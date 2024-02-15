@@ -1,0 +1,30 @@
+:root {
+  --green-light: rgb(105, 190, 105);
+  --green-bold: rgb(77, 133, 58);
+  --green-secondary: rgb(52, 120, 52);
+  --grey: rgba(232, 230, 227, 0.6);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1rem; //16
+  line-height: 1.5;
+  color: #373a3c;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style-type: none;
+}
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  @media screen and (min-width: 1200px) {
+    max-width: 1140px;
+  }
+}
