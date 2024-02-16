@@ -3,9 +3,12 @@
   --green-bold: rgb(77, 133, 58);
   --green-secondary: rgb(52, 120, 52);
   --grey: rgba(232, 230, 227, 0.6);
+  --grey-light: #bbb;
   --white: #fff;
   --green-banner: #5cb85c;
+  --green-link-hover: #3d8b3d;
   --ff-sans: "Source Sans 3", sans-serif;
+  --ff-titillium: "Titillium Web", sans-serif;
 }
 * {
   margin: 0;
@@ -13,13 +16,17 @@
   box-sizing: border-box;
 }
 body {
-  font-family: "Titillium Web", sans-serif;
+  font-family: var(--ff-sans), sans-serif;
   font-size: 1rem; //16
   line-height: 1.5;
   color: #373a3c;
 }
+img {
+  max-width: 100%;
+}
 a {
   text-decoration: none;
+  color: var(--green-banner);
 }
 li {
   list-style-type: none;

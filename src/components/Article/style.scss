@@ -1,0 +1,35 @@
+.article {
+  &__preview {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 0;
+  }
+  &__info {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 1.5rem 0 0.3rem;
+    line-height: 1rem;
+  }
+  &__data {
+    display: block;
+    color: var(--grey-light);
+    font-size: 0.8rem;
+  }
+  &__author-name {
+    font-weight: 500;
+    &:hover {
+      color: var(--green-link-hover);
+      text-decoration: underline;
+    }
+  }
+  &__right {
+    float: right;
+  }
+}
+
+.author__img {
+  display: inline-block;
+  vertical-align: middle;
+  height: 32px;
+  width: 32px;
+  border-radius: 30px;
+}

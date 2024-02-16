@@ -1,0 +1,22 @@
+.like__button {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--green-banner);
+  background: transparent;
+  border-radius: 0.2rem;
+  border-color: var(--green-banner);
+  color: var(--green-banner);
+  text-align: center;
+  gap: 5px;
+  transition: 0.1s linear;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--green-banner);
+    color: var(--white);
+    & .like__ico {
+      fill: var(--white);
+    }
+  }
+}
