@@ -1,0 +1,15 @@
+.article__tags {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.article__tag {
+  font-weight: 300;
+  font-size: 0.8rem;
+  padding: 0 5px;
+  border: 1px solid #ddd;
+  color: #aaa;
+  &:hover {
+    color: #8f8e8e;
+  }
+}

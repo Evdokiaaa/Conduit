@@ -1,0 +1,11 @@
+.feed {
+  margin-top: 2rem;
+  &__container {
+    display: flex;
+    gap: 30px;
+  }
+
+  &__articles {
+    max-width: 75%;
+  }
+}

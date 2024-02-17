@@ -24,6 +24,36 @@
   &__right {
     float: right;
   }
+  &__content {
+    &-title {
+      font-family: var(--ff-titillium);
+      color: var(--black);
+      font-weight: 400;
+      font-size: 1.5rem;
+      margin-bottom: 3px;
+    }
+    &-subtitle {
+      color: var(--grey-text);
+      font-weight: 300;
+      line-height: 1.3rem;
+      margin-bottom: 1.5rem;
+    }
+    &-more {
+      max-width: 30%;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #bbb;
+      vertical-align: middle;
+      &:hover {
+        color: #8f8e8e;
+      }
+    }
+    &-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
 }
 
 .author__img {

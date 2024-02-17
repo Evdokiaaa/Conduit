@@ -1,0 +1,24 @@
+.feed__nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.7rem 0;
+  &-link.active {
+    background: var(--white);
+    color: var(--green-banner);
+    border-bottom: 2px solid var(--green-banner);
+    padding: 0.7rem 0.6rem;
+    cursor: default;
+    font-weight: 600px;
+    &:hover {
+      color: var(--green-banner);
+    }
+  }
+  &-link {
+    border-bottom: 2px solid transparent;
+    color: #aaa;
+    &:hover {
+      color: #555;
+    }
+  }
+}
