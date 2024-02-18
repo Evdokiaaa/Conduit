@@ -22,3 +22,6 @@ export interface Author {
   image: string;
   following: boolean;
 }
+export interface PageChangeData {
+  selected: number;
+}

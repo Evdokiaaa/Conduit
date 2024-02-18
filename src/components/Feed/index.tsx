@@ -1,6 +1,8 @@
-//!Тут будет хранить все статьи
-
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useGetArticlesQuery } from "../../api/api";
+import { PageChangeData } from "../../types/Feed";
+import { serializeSearchParams } from "../../helpers/consts";
 import ActiveFeeds from "../ActiveFeeds";
 import ArticleList from "../ArticleList";
 import Container from "../Container";
@@ -8,10 +10,20 @@ import Loading from "../Loading";
 import Pagination from "../Pagination";
 import Tags from "../Tags";
 import "./style.scss";
+
 const Feed = () => {
-  const { data, error, isLoading } = useGetArticlesQuery();
-  //!Перенести в другой компонент
-  if (isLoading) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState(
+    searchParams.get("page") ? Number(searchParams.get("page")) : 0
+  );
+  const { data, error, isLoading, isFetching } = useGetArticlesQuery({
+    page: page + 1,
+  });
+  const handlePageChange = ({ selected }: PageChangeData) => {
+    setPage(selected);
+    setSearchParams(serializeSearchParams({ page: String(selected + 1) }));
+  };
+  if (isLoading || isFetching) {
     return (
       <Container>
         <Loading text="Loading feeds..." />
@@ -35,7 +47,11 @@ const Feed = () => {
           </div>
           <Tags />
         </div>
-        <Pagination amount={data?.articlesCount || 0} />
+        <Pagination
+          amount={data?.articlesCount || 0}
+          changePage={handlePageChange}
+          page={page}
+        />
       </Container>
     </section>
   );
