@@ -1,5 +1,6 @@
 import { ArticleFeeds } from "../../types/Feed";
 import Article from "../Article";
+
 interface ArticleListProps {
   list: ArticleFeeds[];
 }

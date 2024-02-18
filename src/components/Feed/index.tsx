@@ -5,6 +5,7 @@ import ActiveFeeds from "../ActiveFeeds";
 import ArticleList from "../ArticleList";
 import Container from "../Container";
 import Loading from "../Loading";
+import Pagination from "../Pagination";
 import Tags from "../Tags";
 import "./style.scss";
 const Feed = () => {
@@ -34,6 +35,7 @@ const Feed = () => {
           </div>
           <Tags />
         </div>
+        <Pagination amount={data?.articlesCount || 0} />
       </Container>
     </section>
   );

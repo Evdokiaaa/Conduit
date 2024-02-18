@@ -1,0 +1,33 @@
+.pagination {
+  max-width: 75%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 1.5rem;
+  margin: 1rem 0;
+  &__item {
+    border-color: #ddd;
+    cursor: pointer;
+    &:hover {
+      background-color: #eceeef;
+    }
+
+    &-link {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ddd;
+      &:hover {
+        color: var(--green-link-hover);
+      }
+      &-active {
+        color: var(--white);
+        background-color: var(--green-banner);
+        border-color: var(--green-banner);
+        cursor: default;
+        text-decoration: underline;
+        &:hover {
+          color: var(--white);
+        }
+      }
+    }
+  }
+}
