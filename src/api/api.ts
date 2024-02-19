@@ -1,7 +1,9 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "./axiosQuery";
 import { Feed } from "../types/Feed";
+import { PopularTags } from "../types/PopularTags";
 import { ARTICLES_PER_PAGE } from "../helpers/consts";
+
 interface feedApiParams {
   page: number;
 }
@@ -21,6 +23,12 @@ export const feedApi = createApi({
         },
       }),
     }),
+    getPopularTags: builder.query<PopularTags, null>({
+      query: () => ({
+        url: "/tags",
+        method: "get",
+      }),
+    }),
   }),
 });
-export const { useGetArticlesQuery } = feedApi; //maybe articles
+export const { useGetArticlesQuery, useGetPopularTagsQuery } = feedApi; //maybe articles

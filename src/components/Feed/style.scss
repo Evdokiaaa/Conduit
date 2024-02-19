@@ -3,6 +3,11 @@
   &__container {
     display: flex;
     gap: 30px;
+    &-loading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   &__articles {

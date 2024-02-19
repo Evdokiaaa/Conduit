@@ -1,7 +1,11 @@
-import React from "react";
-//Maybe do spinner
-const Loading = ({ text }) => {
-  return <div className="loading">{text}</div>;
+import "./style.scss";
+interface LoadingProps {
+  text: string;
+  className?: string;
+}
+
+const Loading = ({ text, className }: LoadingProps) => {
+  return <div className={`loading ${className}`}>{text}</div>;
 };
 
 export default Loading;
