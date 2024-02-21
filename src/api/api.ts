@@ -6,6 +6,7 @@ import { ARTICLES_PER_PAGE } from "../helpers/consts";
 
 interface feedApiParams {
   page: number;
+  tag: string | null;
 }
 export const feedApi = createApi({
   reducerPath: "feedApi",
@@ -14,12 +15,13 @@ export const feedApi = createApi({
   }),
   endpoints: (builder) => ({
     getArticles: builder.query<Feed, feedApiParams>({
-      query: ({ page }) => ({
+      query: ({ page, tag }) => ({
         url: "/articles",
         method: "get",
         params: {
           limit: ARTICLES_PER_PAGE,
           offset: page * ARTICLES_PER_PAGE,
+          tag,
         },
       }),
     }),

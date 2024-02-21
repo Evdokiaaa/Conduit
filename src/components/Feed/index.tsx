@@ -16,9 +16,11 @@ const Feed = () => {
   const [page, setPage] = useState(
     searchParams.get("page") ? Number(searchParams.get("page")) : 0
   );
-  const { data, error, isLoading } = useGetArticlesQuery({
+  const { data, error, isLoading, isFetching } = useGetArticlesQuery({
     page: page + 1,
+    tag: searchParams.get("tag"),
   });
+  console.log(isFetching);
   const handlePageChange = ({ selected }: PageChangeData) => {
     setPage(selected);
     setSearchParams(serializeSearchParams({ page: String(selected + 1) }));
@@ -34,11 +36,18 @@ const Feed = () => {
     <section className="feed">
       <Container>
         <div
-          className={isLoading ? "feed__container-loading" : "feed__container"}
+          className={
+            isLoading || isFetching
+              ? "feed__container-loading"
+              : "feed__container"
+          }
         >
           <div className="feed__articles">
             <ActiveFeeds />
-            <ArticleList list={data?.articles || []} isLoading={isLoading} />
+            <ArticleList
+              list={data?.articles || []}
+              isLoading={isLoading || isFetching}
+            />
           </div>
           <Tags />
         </div>

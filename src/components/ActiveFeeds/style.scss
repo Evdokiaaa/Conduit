@@ -8,8 +8,10 @@
     color: var(--green-banner);
     border-bottom: 2px solid var(--green-banner);
     padding: 0.7rem 0.6rem;
+    font-size: 1.2rem;
     cursor: default;
-    font-weight: 600px;
+    font-weight: 400;
+
     &:hover {
       color: var(--green-banner);
     }

@@ -16,7 +16,7 @@ const ArticleList = ({ list, isLoading }: ArticleListProps) => {
           ))}
         </section>
       ) : (
-        <Loading className="loading__articles" text="Loading..ываываыва." />
+        <Loading className="loading__articles" text="Loading..." />
       )}
     </>
   );

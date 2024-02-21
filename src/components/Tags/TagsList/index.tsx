@@ -6,7 +6,7 @@ const TagsList = ({ tags }: TagsListProps) => {
   return (
     <div className="tag__list">
       {tags.map((tag, i) => (
-        <Link to="/" key={i} className="tag__default ">
+        <Link to={`/?tag=${tag}`} key={i} className="tag__default ">
           {tag}
         </Link>
       ))}
