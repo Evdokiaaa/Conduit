@@ -1,0 +1,42 @@
+.profile__banner {
+  background: #f3f3f3;
+  &-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0 1rem;
+    max-width: 83.3%;
+    flex: 0 0 83.3%;
+    margin-left: 8.3%;
+  }
+  &-img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    margin-bottom: 0.8rem;
+  }
+  &-title {
+    font-weight: 700;
+  }
+  &-follow {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    align-self: flex-end;
+    color: rgb(168, 160, 149);
+    border-color: rgb(77, 83, 86);
+    border: 1px solid #999;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    background: inherit;
+    cursor: pointer;
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+  &-icon {
+    margin-top: 3px;
+  }
+}

@@ -18,7 +18,7 @@ const Article = ({
   return (
     <article className="article__preview">
       <div className="article__header">
-        <Link to={`/@${author.username}`}>
+        <Link to={`/profile/${author.username}`}>
           <img
             className="author__img"
             src={author.image}
@@ -26,7 +26,10 @@ const Article = ({
           />
         </Link>
         <div className="article__info">
-          <Link to={`/@${author.username}`} className="article__author-name">
+          <Link
+            to={`/profile/${author.username}`}
+            className="article__author-name"
+          >
             {author.username}
           </Link>
           <span className="article__data">
@@ -38,7 +41,7 @@ const Article = ({
         </div>
       </div>
       <div className="article__content">
-        <Link to="/article/Maksim Estaban">
+        <Link to="/article/Maksim@Estaban">
           <h1 className="article__content-title">{title}</h1>
           <p className="article__content-subtitle">{description}|</p>
           <div className="article__content-bottom">

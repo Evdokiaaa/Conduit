@@ -1,14 +1,17 @@
-import Banner from "./components/Banner";
-import Feed from "./components/Feed";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
+import MainPage from "./pages/Main";
+import ProfilePage from "./pages/Profile";
 
 const App = () => {
   return (
     <>
       <Header />
       <main className="main">
-        <Banner />
-        <Feed />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/profile/:user" element={<ProfilePage />} />
+        </Routes>
       </main>
     </>
   );
