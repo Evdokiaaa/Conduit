@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useGetArticlesQuery } from "../../api/api";
+import { feedData } from "../../api/api";
 import { PageChangeData } from "../../types/Feed";
 import { serializeSearchParams } from "../../utils";
 import ActiveFeeds from "../ActiveFeeds";
@@ -10,19 +10,17 @@ import Loading from "../Loading";
 import Pagination from "../Pagination";
 import Tags from "../Tags";
 import "./style.scss";
-
-const Feed = () => {
+interface FeedProps {
+  data?: feedData;
+  isLoading: boolean;
+  error: unknown;
+  isFetching: boolean;
+}
+const Feed = ({ data, isLoading, error, isFetching }: FeedProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(
-    searchParams.get("page") ? Number(searchParams.get("page")) : 0
-  );
-  const { data, error, isLoading, isFetching } = useGetArticlesQuery({
-    page: page + 1,
-    tag: searchParams.get("tag"),
-  });
-  console.log(isFetching);
+  const page = searchParams.get("page") ? Number(searchParams.get("page")) : 0;
+
   const handlePageChange = ({ selected }: PageChangeData) => {
-    setPage(selected);
     setSearchParams(serializeSearchParams({ page: String(selected + 1) }));
   };
   if (error) {
