@@ -4,13 +4,18 @@ import { ArticleFeeds, Feed } from "../types/Feed";
 import { PopularTags } from "../types/PopularTags";
 import { ARTICLES_PER_PAGE } from "../helpers/consts";
 
-interface feedApiParams {
+interface BaseFeed {
   page: number;
+}
+interface feedApiParams extends BaseFeed {
   tag: string | null;
 }
 export interface feedData {
   articles: ArticleFeeds[];
   articlesCount: number;
+}
+export interface ProfileFeed extends BaseFeed {
+  author: string;
 }
 export const feedApi = createApi({
   reducerPath: "feedApi",
@@ -35,6 +40,17 @@ export const feedApi = createApi({
         };
       },
     }),
+    getProfileFeeds: builder.query<feedData, ProfileFeed>({
+      query: ({ page, author }) => ({
+        url: "/articles",
+        method: "get",
+        params: {
+          limit: ARTICLES_PER_PAGE,
+          offset: page * ARTICLES_PER_PAGE,
+          author,
+        },
+      }),
+    }),
     getPopularTags: builder.query<PopularTags, null>({
       query: () => ({
         url: "/tags",
@@ -43,4 +59,8 @@ export const feedApi = createApi({
     }),
   }),
 });
-export const { useGetArticlesQuery, useGetPopularTagsQuery } = feedApi; //maybe articles
+export const {
+  useGetArticlesQuery,
+  useGetProfileFeedsQuery,
+  useGetPopularTagsQuery,
+} = feedApi;

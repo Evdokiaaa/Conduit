@@ -1,0 +1,15 @@
+.main {
+  &__info {
+    margin-top: 1.5rem;
+  }
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    &-loading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
