@@ -3,7 +3,6 @@ import LikeButton from "../LikeButton";
 import "./style.scss";
 import ArticleTags from "./Tags";
 import { ArticleFeeds } from "../../types/Feed";
-
 import dayjs from "dayjs";
 
 interface ArticleProps extends ArticleFeeds {}

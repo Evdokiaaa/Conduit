@@ -11,6 +11,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/profile/:user" element={<ProfilePage />} />
+          <Route path="/profile/:user/favorites" element={<ProfilePage />} />
         </Routes>
       </main>
     </>

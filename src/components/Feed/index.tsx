@@ -1,18 +1,12 @@
-import { feedData } from "../../api/api";
 import { usePageParams } from "../../hooks/usePageParams";
 import { PageChangeData } from "../../types/Feed";
+import { FeedProps } from "../../types/FeedProps";
 import ArticleList from "../ArticleList";
 import Container from "../Container";
 import Loading from "../Loading";
 import Pagination from "../Pagination";
 import "./style.scss";
 
-interface FeedProps {
-  data?: feedData;
-  isLoading: boolean;
-  error: unknown;
-  isFetching: boolean;
-}
 const Feed = ({ data, isLoading, error, isFetching }: FeedProps) => {
   const { page, setPage } = usePageParams();
   const handlePageChange = ({ selected }: PageChangeData) => {
