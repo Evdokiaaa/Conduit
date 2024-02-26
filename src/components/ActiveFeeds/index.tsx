@@ -17,7 +17,7 @@ const ActiveFeeds = ({
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const tag = searchParams.get("tag");
-  console.log(location);
+
   return (
     <div className="feed__toggle">
       <ul className="feed__nav">

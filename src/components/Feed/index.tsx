@@ -19,6 +19,13 @@ const Feed = ({ data, isLoading, error, isFetching }: FeedProps) => {
       </Container>
     );
   }
+  if (data?.articlesCount === 0) {
+    return (
+      <Container>
+        <Loading text="No articles are here... yet." />
+      </Container>
+    );
+  }
   return (
     <section className="feed">
       <ArticleList

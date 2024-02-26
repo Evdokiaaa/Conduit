@@ -3,7 +3,7 @@ import { useGetPopularTagsQuery } from "../../api/api";
 import Loading from "../Loading";
 import TagsList from "./TagsList";
 const Tags = () => {
-  const { data, isLoading } = useGetPopularTagsQuery(null); //i dont like null
+  const { data, isLoading } = useGetPopularTagsQuery(null);
   console.log("data", data);
 
   return (
