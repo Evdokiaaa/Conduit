@@ -3,7 +3,7 @@ import LikeButton from "../LikeButton";
 import "./style.scss";
 import ArticleTags from "./Tags";
 import { ArticleFeeds } from "../../types/Feed";
-import dayjs from "dayjs";
+import ArticleUserInfo from "./UserInfo";
 
 interface ArticleProps extends ArticleFeeds {}
 const Article = ({
@@ -13,34 +13,18 @@ const Article = ({
   description,
   favoritesCount,
   tagList,
+  slug,
 }: ArticleProps) => {
   return (
     <article className="article__preview">
       <div className="article__header">
-        <Link to={`/profile/${author.username}`}>
-          <img
-            className="author__img"
-            src={author.image}
-            alt={author.username}
-          />
-        </Link>
-        <div className="article__info">
-          <Link
-            to={`/profile/${author.username}`}
-            className="article__author-name"
-          >
-            {author.username}
-          </Link>
-          <span className="article__data">
-            {dayjs(createdAt).locale("en").format("ddd MMM DD YYYY")}
-          </span>
-        </div>
-        <div className="article__right">
-          <LikeButton count={favoritesCount} />
-        </div>
+        <ArticleUserInfo author={author} createdAt={createdAt} />
+      </div>
+      <div className="article__right">
+        <LikeButton count={favoritesCount} />
       </div>
       <div className="article__content">
-        <Link to="/article/Maksim@Estaban">
+        <Link to={`/article/${slug.toLocaleLowerCase()}`}>
           <h1 className="article__content-title">{title}</h1>
           <p className="article__content-subtitle">{description}|</p>
           <div className="article__content-bottom">

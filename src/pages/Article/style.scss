@@ -1,0 +1,12 @@
+.article__desc {
+  &-container {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  &-text {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    margin-bottom: 2rem;
+  }
+}
