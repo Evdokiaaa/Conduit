@@ -14,19 +14,21 @@ const UserArticles = ({ data, error, isLoading, isFetching }: FeedProps) => {
   ];
   return (
     <div className="user__articles">
-      <Container>
-        <ActiveFeeds
-          name="My Articles"
-          link={`/profile/${encodeURIComponent(user!)}`}
-          favorites={favorite}
-        />
-        <Feed
-          data={data}
-          error={error}
-          isLoading={isLoading}
-          isFetching={isFetching}
-        />
-      </Container>
+      <div className="user__articles-container">
+        <Container>
+          <ActiveFeeds
+            name="My Articles"
+            link={`/profile/${encodeURIComponent(user!)}`}
+            favorites={favorite}
+          />
+          <Feed
+            data={data}
+            error={error}
+            isLoading={isLoading}
+            isFetching={isFetching}
+          />
+        </Container>
+      </div>
     </div>
   );
 };

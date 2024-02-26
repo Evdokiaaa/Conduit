@@ -22,7 +22,10 @@ const Feed = ({ data, isLoading, error, isFetching }: FeedProps) => {
   if (data?.articlesCount === 0) {
     return (
       <Container>
-        <Loading text="No articles are here... yet." />
+        <Loading
+          text="No articles are here... yet."
+          className="loading__favorites"
+        />
       </Container>
     );
   }

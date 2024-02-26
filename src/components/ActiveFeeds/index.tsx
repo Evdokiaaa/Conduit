@@ -30,7 +30,9 @@ const ActiveFeeds = ({
           >
             {name}
           </Link>
-          {favorites?.map((item) => (
+        </li>
+        {favorites?.map((item) => (
+          <li className="feed__nav-item">
             <Link
               key={item.link}
               className={`feed__nav-link ${
@@ -40,8 +42,8 @@ const ActiveFeeds = ({
             >
               {item.name}
             </Link>
-          ))}
-        </li>
+          </li>
+        ))}
         <li className="feed__nav-item">
           {tag && (
             <span className="feed__nav-link active">

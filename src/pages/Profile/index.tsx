@@ -20,7 +20,6 @@ const ProfilePage = () => {
     page,
     isFavorite: location.pathname.includes("favorites"),
   });
-  console.log(profile);
   if (profileLoading) return null;
   if (profileError) console.log("an error occured");
   return (
