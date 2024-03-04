@@ -2,6 +2,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { ArticleFeeds, Feed } from "../types/Feed";
 import { PopularTags } from "../types/PopularTags";
 import { ARTICLES_PER_PAGE, BASE_QUERY } from "../helpers/consts";
+import { SingleArticleRoot } from "../types/SingleArticle";
 
 interface BaseFeed {
   page: number;
@@ -16,6 +17,9 @@ export interface feedData {
 export interface ProfileFeed extends BaseFeed {
   author?: string;
   isFavorite?: boolean;
+}
+export interface SingleArticleParams {
+  slug: string;
 }
 export const feedApi = createApi({
   reducerPath: "feedApi",
@@ -56,10 +60,17 @@ export const feedApi = createApi({
         method: "get",
       }),
     }),
+    getSingleArticle: builder.query<SingleArticleRoot, SingleArticleParams>({
+      query: ({ slug }) => ({
+        url: `/articles/${slug}`,
+        method: "get",
+      }),
+    }),
   }),
 });
 export const {
   useGetArticlesQuery,
   useGetProfileFeedsQuery,
   useGetPopularTagsQuery,
+  useGetSingleArticleQuery,
 } = feedApi;

@@ -24,7 +24,7 @@ const Article = ({
         <LikeButton count={favoritesCount} />
       </div>
       <div className="article__content">
-        <Link to={`/article/${slug.toLocaleLowerCase()}`}>
+        <Link to={`/article/${slug}`}>
           <h1 className="article__content-title">{title}</h1>
           <p className="article__content-subtitle">{description}|</p>
           <div className="article__content-bottom">
