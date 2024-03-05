@@ -10,3 +10,12 @@
     margin-bottom: 2rem;
   }
 }
+.article__comment {
+  margin-top: 2rem;
+  text-align: center;
+  &-link {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

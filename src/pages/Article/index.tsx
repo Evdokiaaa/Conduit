@@ -1,11 +1,10 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetSingleArticleQuery } from "../../api/api";
 import ArticleTags from "../../components/Article/Tags";
 import ArticleBanner from "../../components/ArticleBanner";
 import Container from "../../components/Container";
-import "./style.scss";
 import Loading from "../../components/Loading";
-
+import "./style.scss";
 const ArticlePage = () => {
   const { slug } = useParams();
   const { data, isLoading, error } = useGetSingleArticleQuery({
@@ -35,10 +34,16 @@ const ArticlePage = () => {
             <p className="article__desc-text">{data!.article!.body}</p>
             <ArticleTags tags={data?.article.tagList || []} />
           </div>
-          <div>TEST!!!</div>
-          <div>TEST!!!</div>
-          <div>TEST!!!</div>
-          <div>TEST!!!</div>
+          <div className="article__comment">
+            <Link className="article__comment-link" to="/login">
+              Sign in
+            </Link>{" "}
+            or {""}
+            <Link className="article__comment-link" to="/register">
+              Sign Up
+            </Link>{" "}
+            to add comments on this article.
+          </div>
         </Container>
       </div>
     </div>
