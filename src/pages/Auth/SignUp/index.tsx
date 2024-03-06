@@ -5,6 +5,8 @@ import Input from "../../../components/UI/Input";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import AuthBtn from "../../../components/UI/AuthBtn";
+import { ValidationError } from "../../../types/ValidationErrors";
 interface SignUInputs {
   username: string;
   email: string;
@@ -17,7 +19,12 @@ const validationSchema = yup.object({
 });
 
 const SignUp = () => {
-  const { register } = useForm<SignUInputs>({
+  console.log(validationSchema);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUInputs>({
     defaultValues: {
       password: "",
       email: "",
@@ -25,6 +32,11 @@ const SignUp = () => {
     },
     resolver: yupResolver(validationSchema),
   });
+  console.log("sssss", errors);
+  console.log("IDIOT", Object.keys(errors));
+  const onSubmit = (values: SignUInputs) => {
+    console.log("SUMBITED", values);
+  };
   return (
     <div className="register">
       <Container>
@@ -33,14 +45,37 @@ const SignUp = () => {
           <p className="register__question">
             <Link to="/login">Have an account?</Link>
           </p>
-          <form action="#">
+          <ul>
+            {Object.keys(errors).map((key) => (
+              <li className="register__error" key={key + "1"}>
+                {(errors as Record<typeof key, ValidationError>)[key].message}
+              </li>
+            ))}
+          </ul>
+          <form
+            action="#"
+            className="register__form"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <Input
+              className="register__form-input"
               placeholder="Username"
               type="text"
               {...register("username")}
             />
-            <Input placeholder="Email" name="email" type="email" />
-            <Input placeholder="Password" name="password" type="password" />
+            <Input
+              className="register__form-input"
+              placeholder="Email"
+              type="email"
+              {...register("email")}
+            />
+            <Input
+              className="register__form-input"
+              placeholder="Password"
+              type="password"
+              {...register("password")}
+            />
+            <AuthBtn />
           </form>
         </div>
       </Container>

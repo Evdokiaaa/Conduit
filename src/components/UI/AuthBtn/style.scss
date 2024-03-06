@@ -1,0 +1,17 @@
+.auth__btn {
+  color: var(--white);
+  background-color: var(--green-banner);
+  border-color: var(--green-banner);
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+  border: 1px solid transparent;
+  font-weight: 400;
+  line-height: 1.25;
+  float: right;
+  cursor: pointer;
+  &:hover {
+    background-color: #449d44;
+    border-color: #419641;
+  }
+}
