@@ -11,7 +11,7 @@ const Pagination = ({ amount, changePage, page }: Pagination) => {
   return (
     <>
       <ReactPaginate
-        pageCount={amount / ARTICLES_PER_PAGE - 1}
+        pageCount={Math.ceil(amount / ARTICLES_PER_PAGE - 1)}
         pageRangeDisplayed={amount / ARTICLES_PER_PAGE}
         previousLabel={null}
         nextLabel={null}

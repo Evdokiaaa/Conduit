@@ -1,13 +1,17 @@
 import "./style.scss";
 import Container from "../../../components/Container";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../../components/UI/Input";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AuthBtn from "../../../components/UI/AuthBtn";
 import { ValidationError } from "../../../types/ValidationErrors";
-interface SignUInputs {
+import { useLazyRegisterQuery } from "../../../api/auth";
+import { toast } from "react-toastify";
+import { setUser } from "../../../store/authSlice";
+import { useDispatch } from "react-redux";
+interface SignUpInputs {
   username: string;
   email: string;
   password: string;
@@ -19,12 +23,14 @@ const validationSchema = yup.object({
 });
 
 const SignUp = () => {
-  console.log(validationSchema);
+  const [triggerRegister] = useLazyRegisterQuery();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUInputs>({
+  } = useForm<SignUpInputs>({
     defaultValues: {
       password: "",
       email: "",
@@ -32,10 +38,17 @@ const SignUp = () => {
     },
     resolver: yupResolver(validationSchema),
   });
-  console.log("sssss", errors);
-  console.log("IDIOT", Object.keys(errors));
-  const onSubmit = (values: SignUInputs) => {
-    console.log("SUMBITED", values);
+  const onSubmit = async (values: SignUpInputs) => {
+    try {
+      const { data } = await triggerRegister(values, false);
+      if (!data) {
+        throw new Error("No Data");
+      }
+      dispatch(setUser(data.user));
+      navigate("/");
+    } catch (e) {
+      toast.error("An Error Occurred");
+    }
   };
   return (
     <div className="register">
@@ -45,7 +58,7 @@ const SignUp = () => {
           <p className="register__question">
             <Link to="/login">Have an account?</Link>
           </p>
-          <ul>
+          <ul className="register__errors">
             {Object.keys(errors).map((key) => (
               <li className="register__error" key={key + "1"}>
                 {(errors as Record<typeof key, ValidationError>)[key].message}
@@ -53,7 +66,7 @@ const SignUp = () => {
             ))}
           </ul>
           <form
-            action="#"
+            method="POST"
             className="register__form"
             onSubmit={handleSubmit(onSubmit)}
           >
