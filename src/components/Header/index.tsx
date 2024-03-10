@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import "./style.scss";
 import Container from "../Container";
+import { useAuth } from "../../hooks/useAuth";
 
 const Header = () => {
+  const { isLoggedIn, logOut } = useAuth();
   return (
     <header className="header">
       <Container>
@@ -23,26 +25,42 @@ const Header = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav__item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav__item-link active" : "nav__item-link"
-                }
-                to="/login"
-              >
-                Sign in
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav__item-link active" : "nav__item-link"
-                }
-                to="/register"
-              >
-                Sign up
-              </NavLink>
-            </li>
+            {isLoggedIn ? (
+              <li className="nav__item">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "nav__item-link active" : "nav__item-link"
+                  }
+                  onClick={logOut}
+                  to="/"
+                >
+                  Log Out
+                </NavLink>
+              </li>
+            ) : (
+              <>
+                <li className="nav__item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav__item-link active" : "nav__item-link"
+                    }
+                    to="/login"
+                  >
+                    Sign in
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav__item-link active" : "nav__item-link"
+                    }
+                    to="/register"
+                  >
+                    Sign up
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </Container>

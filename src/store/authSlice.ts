@@ -1,16 +1,21 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RegisterUser, RegisterUserBio } from "../types/Register";
+import { RegisterUserBio } from "../types/Register";
+import { RootState } from "./store";
 const initialState = {
-  user: {},
+  user: {} || null,
 };
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<RegisterUserBio["user"]>) => {
+    setUser: (state, action: PayloadAction<RegisterUserBio["user"] | null>) => {
+      if (action.payload === null) {
+        state.user = null;
+        return;
+      }
       state.user = { ...action.payload };
     },
   },
 });
-
+export const selectedUser = (state: RootState) => state.auth.user;
 export const { setUser } = authSlice.actions;

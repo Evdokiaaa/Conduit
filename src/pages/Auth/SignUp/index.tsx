@@ -7,10 +7,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AuthBtn from "../../../components/UI/AuthBtn";
 import { ValidationError } from "../../../types/ValidationErrors";
-import { useLazyRegisterQuery } from "../../../api/auth";
 import { toast } from "react-toastify";
-import { setUser } from "../../../store/authSlice";
-import { useDispatch } from "react-redux";
+import { useAuth } from "../../../hooks/useAuth";
+
 interface SignUpInputs {
   username: string;
   email: string;
@@ -23,9 +22,8 @@ const validationSchema = yup.object({
 });
 
 const SignUp = () => {
-  const [triggerRegister] = useLazyRegisterQuery();
+  const { registerUser } = useAuth();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -40,11 +38,7 @@ const SignUp = () => {
   });
   const onSubmit = async (values: SignUpInputs) => {
     try {
-      const { data } = await triggerRegister(values, false);
-      if (!data) {
-        throw new Error("No Data");
-      }
-      dispatch(setUser(data.user));
+      await registerUser(values);
       navigate("/");
     } catch (e) {
       toast.error("An Error Occurred");
