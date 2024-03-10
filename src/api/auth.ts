@@ -1,8 +1,8 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { RegisterUser, RegisterUserBio } from "../types/Register";
 import { BASE_QUERY } from "../helpers/consts";
+import { LoginUserBio, LoginUser } from "../types/Login";
 
-// interface RegisterParams extends RegisterUserBio {}
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: BASE_QUERY,
@@ -16,6 +16,15 @@ export const authApi = createApi({
         },
       }),
     }),
+    login: builder.query<LoginUserBio, LoginUser["user"]>({
+      query: (args) => ({
+        url: "/users/login",
+        method: "POST",
+        data: {
+          user: args,
+        },
+      }),
+    }),
   }),
 });
-export const { useLazyRegisterQuery } = authApi;
+export const { useLazyRegisterQuery, useLazyLoginQuery } = authApi;
