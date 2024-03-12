@@ -7,17 +7,18 @@ import Tags from "../../components/Tags";
 import Container from "../../components/Container";
 import ActiveFeeds from "../../components/ActiveFeeds";
 import "./style.scss";
+import { useAuth } from "../../hooks/useAuth";
 const MainPage = () => {
   const [searchParams] = useSearchParams();
   const { page } = usePageParams();
-  //const page = searchParams.get("page") ? Number(searchParams.get("page")) : 0;
+  const { isLoggedIn } = useAuth();
   const { data, error, isLoading, isFetching } = useGetArticlesQuery({
     page: page,
     tag: searchParams.get("tag"),
   });
   return (
     <>
-      <Banner />
+      {isLoggedIn && <Banner />}
       <section className="main__info">
         <Container>
           <ActiveFeeds />

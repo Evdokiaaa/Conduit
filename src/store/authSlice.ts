@@ -1,8 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RegisterUserBio } from "../types/Register";
 import { RootState } from "./store";
-const initialState = {
-  user: {} || null,
+interface AuthState {
+  user: RegisterUserBio["user"] | null;
+}
+
+const initialState: AuthState = {
+  user: null,
 };
 export const authSlice = createSlice({
   name: "auth",

@@ -2,9 +2,12 @@ import { Link, NavLink } from "react-router-dom";
 import "./style.scss";
 import Container from "../Container";
 import { useAuth } from "../../hooks/useAuth";
+import { FaEdit } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
+import { FaRegFaceSmileBeam } from "react-icons/fa6";
 
 const Header = () => {
-  const { isLoggedIn, logOut } = useAuth();
+  const { isLoggedIn, logOut, user } = useAuth();
   return (
     <header className="header">
       <Container>
@@ -26,17 +29,56 @@ const Header = () => {
               </NavLink>
             </li>
             {isLoggedIn ? (
-              <li className="nav__item">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "nav__item-link active" : "nav__item-link"
-                  }
-                  onClick={logOut}
-                  to="/"
-                >
-                  Log Out
-                </NavLink>
-              </li>
+              <>
+                <li className="nav__item">
+                  <FaEdit />
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav__item-link active" : "nav__item-link"
+                    }
+                    onClick={logOut}
+                    to="/editor"
+                  >
+                    New Post
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <IoMdSettings />
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav__item-link active" : "nav__item-link"
+                    }
+                    onClick={logOut}
+                    to="/settings"
+                  >
+                    Settings
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <FaRegFaceSmileBeam />
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav__item-link active" : "nav__item-link"
+                    }
+                    onClick={logOut}
+                    to={`/${user?.username}`}
+                  >
+                    {user?.username}
+                  </NavLink>
+                </li>
+
+                <li className="nav__item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav__item-link active" : "nav__item-link"
+                    }
+                    onClick={logOut}
+                    to="/"
+                  >
+                    Log Out
+                  </NavLink>
+                </li>
+              </>
             ) : (
               <>
                 <li className="nav__item">

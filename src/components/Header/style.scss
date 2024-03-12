@@ -11,7 +11,13 @@
   }
   &__items {
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem;
+    align-items: center;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
   &__item-link {
     color: rgba(0, 0, 0, 0.3);
