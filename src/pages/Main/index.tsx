@@ -16,12 +16,23 @@ const MainPage = () => {
     page: page,
     tag: searchParams.get("tag"),
   });
+  const activeFeedsItems = [];
+  if (isLoggedIn) {
+    activeFeedsItems.push({
+      name: "Your Feed",
+      link: "/personal-feed",
+    });
+  }
   return (
     <>
       {isLoggedIn && <Banner />}
       <section className="main__info">
         <Container>
-          <ActiveFeeds />
+          {isLoggedIn ? (
+            <ActiveFeeds additional={activeFeedsItems} />
+          ) : (
+            <ActiveFeeds />
+          )}
           <div
             className={
               isLoading || isFetching

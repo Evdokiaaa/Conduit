@@ -7,12 +7,13 @@ interface ActiveFeedsItem {
 interface ActiveFeedsProps {
   name?: string;
   link?: string;
-  favorites?: ActiveFeedsItem[];
+  additional?: ActiveFeedsItem[];
 }
+
 const ActiveFeeds = ({
   name = "Global Feed",
   link = "/",
-  favorites = [],
+  additional = [],
 }: ActiveFeedsProps) => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
@@ -31,10 +32,9 @@ const ActiveFeeds = ({
             {name}
           </Link>
         </li>
-        {favorites?.map((item) => (
-          <li className="feed__nav-item">
+        {additional?.map((item) => (
+          <li className="feed__nav-item" key={item.link}>
             <Link
-              key={item.link}
               className={`feed__nav-link ${
                 !location.pathname.includes("favorites") ? "" : "active"
               }`}

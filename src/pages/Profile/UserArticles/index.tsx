@@ -19,7 +19,7 @@ const UserArticles = ({ data, error, isLoading, isFetching }: FeedProps) => {
           <ActiveFeeds
             name="My Articles"
             link={`/profile/${encodeURIComponent(user!)}`}
-            favorites={favorite}
+            additional={favorite}
           />
           <Feed
             data={data}
