@@ -1,0 +1,24 @@
+.profile__banner {
+  &-follow,
+  &-settings {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    align-self: flex-end;
+    color: rgb(168, 160, 149);
+    border-color: rgb(77, 83, 86);
+    border: 1px solid #999;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    background: inherit;
+    cursor: pointer;
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+  &-icon {
+    margin-bottom: 1px;
+    margin-right: 3px;
+  }
+}
