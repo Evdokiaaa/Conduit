@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useMatch, useSearchParams } from "react-router-dom";
 import { useGetArticlesQuery } from "../../api/api";
 import Banner from "../../components/Banner";
 import Feed from "../../components/Feed";
@@ -11,10 +11,13 @@ import { useAuth } from "../../hooks/useAuth";
 const MainPage = () => {
   const [searchParams] = useSearchParams();
   const { page } = usePageParams();
+  const personalFeed = useMatch("/personal-feed");
+  console.log(personalFeed);
   const { isLoggedIn } = useAuth();
   const { data, error, isLoading, isFetching } = useGetArticlesQuery({
     page: page,
     tag: searchParams.get("tag"),
+    isPersonalFeed: !!personalFeed,
   });
   const activeFeedsItems = [];
   if (isLoggedIn) {

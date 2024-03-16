@@ -9,6 +9,7 @@ interface BaseFeed {
 }
 interface feedApiParams extends BaseFeed {
   tag: string | null;
+  isPersonalFeed: boolean | null;
 }
 export interface feedData {
   articles: ArticleFeeds[];
@@ -26,8 +27,8 @@ export const feedApi = createApi({
   baseQuery: BASE_QUERY,
   endpoints: (builder) => ({
     getArticles: builder.query<feedData, feedApiParams>({
-      query: ({ page, tag }) => ({
-        url: "/articles",
+      query: ({ page, tag, isPersonalFeed }) => ({
+        url: isPersonalFeed ? "/articles/feed" : "/articles",
         method: "get",
         params: {
           limit: ARTICLES_PER_PAGE,

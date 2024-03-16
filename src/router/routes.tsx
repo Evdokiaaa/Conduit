@@ -16,6 +16,10 @@ export const routes: routesProps[] = [
     element: <MainPage />,
   },
   {
+    path: "/personal-feed",
+    element: <MainPage />,
+  },
+  {
     path: "/register",
     element: <SignUp />,
   },

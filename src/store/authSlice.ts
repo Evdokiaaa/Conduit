@@ -22,4 +22,5 @@ export const authSlice = createSlice({
   },
 });
 export const selectedUser = (state: RootState) => state.auth.user;
+export const selectToken = (state: RootState) => state.auth.user?.token;
 export const { setUser } = authSlice.actions;

@@ -25,7 +25,11 @@ const ActiveFeeds = ({
         <li className="feed__nav-item">
           <Link
             className={`feed__nav-link ${
-              tag || location.pathname.includes("favorites") ? "" : "active"
+              tag ||
+              location.pathname.includes("personal-feed") ||
+              location.pathname.includes("favorites")
+                ? ""
+                : "active"
             }`}
             to={link}
           >
@@ -36,7 +40,10 @@ const ActiveFeeds = ({
           <li className="feed__nav-item" key={item.link}>
             <Link
               className={`feed__nav-link ${
-                !location.pathname.includes("favorites") ? "" : "active"
+                location.pathname.includes("favorites") ||
+                location.pathname.includes("personal-feed")
+                  ? "active"
+                  : ""
               }`}
               to={item.link}
             >
