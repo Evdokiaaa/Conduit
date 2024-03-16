@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import { routes } from "./router/routes";
+import { useAuth } from "./hooks/useAuth";
 
 const App = () => {
   return (

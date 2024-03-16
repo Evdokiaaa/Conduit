@@ -36,7 +36,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? "nav__item-link active" : "nav__item-link"
                     }
-                    onClick={logOut}
+                    
                     to="/editor"
                   >
                     New Post
@@ -48,7 +48,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? "nav__item-link active" : "nav__item-link"
                     }
-                    onClick={logOut}
+                    
                     to="/settings"
                   >
                     Settings
@@ -60,8 +60,8 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? "nav__item-link active" : "nav__item-link"
                     }
-                    onClick={logOut}
-                    to={`/${user?.username}`}
+                   
+                    to={`/profile/${user?.username}`}
                   >
                     {user?.username}
                   </NavLink>
