@@ -1,6 +1,6 @@
 export interface EditorInputs {
   title: string;
-  desc: string;
+  description: string;
   body: string;
   tags: string;
 }

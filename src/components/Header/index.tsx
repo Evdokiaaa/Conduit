@@ -7,7 +7,7 @@ import { IoMdSettings } from "react-icons/io";
 import { FaRegFaceSmileBeam } from "react-icons/fa6";
 
 const Header = () => {
-  const { isLoggedIn, logOut, user } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   return (
     <header className="header">
       <Container>
@@ -36,7 +36,6 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? "nav__item-link active" : "nav__item-link"
                     }
-                    
                     to="/editor"
                   >
                     New Post
@@ -48,7 +47,6 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? "nav__item-link active" : "nav__item-link"
                     }
-                    
                     to="/settings"
                   >
                     Settings
@@ -60,22 +58,9 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? "nav__item-link active" : "nav__item-link"
                     }
-                   
                     to={`/profile/${user?.username}`}
                   >
                     {user?.username}
-                  </NavLink>
-                </li>
-
-                <li className="nav__item">
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? "nav__item-link active" : "nav__item-link"
-                    }
-                    onClick={logOut}
-                    to="/"
-                  >
-                    Log Out
                   </NavLink>
                 </li>
               </>

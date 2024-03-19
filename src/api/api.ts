@@ -3,6 +3,7 @@ import { ArticleFeeds, Feed } from "../types/Feed";
 import { PopularTags } from "../types/PopularTags";
 import { ARTICLES_PER_PAGE, BASE_QUERY } from "../helpers/consts";
 import { SingleArticleRoot } from "../types/SingleArticle";
+import { CreateArticleBIO } from "../types/CreateArticle";
 
 interface BaseFeed {
   page: number;
@@ -22,6 +23,13 @@ export interface ProfileFeed extends BaseFeed {
 export interface SingleArticleParams {
   slug: string;
 }
+interface CreateArticleParams {
+  title: string;
+  description: string;
+  body: string;
+  tags: string;
+}
+
 export const feedApi = createApi({
   reducerPath: "feedApi",
   baseQuery: BASE_QUERY,
@@ -67,11 +75,30 @@ export const feedApi = createApi({
         method: "get",
       }),
     }),
+    createArticle: builder.mutation<CreateArticleBIO, CreateArticleParams>({
+      query: ({ title, description, body, tags }) => {
+        const data = {
+          article: {
+            title,
+            description,
+            body,
+            tagList: tags.split(",").map((tag: string) => tag.trim()),
+          },
+        };
+        return {
+          url: "/articles",
+          method: "POST",
+          data,
+        };
+      },
+    }),
   }),
 });
+
 export const {
   useGetArticlesQuery,
   useGetProfileFeedsQuery,
   useGetPopularTagsQuery,
   useGetSingleArticleQuery,
+  useCreateArticleMutation,
 } = feedApi;

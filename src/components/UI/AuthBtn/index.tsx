@@ -1,4 +1,4 @@
-import "./style.scss";
+  import "./style.scss";
 const AuthBtn = () => {
   return (
     <button className="auth__btn" type="submit">

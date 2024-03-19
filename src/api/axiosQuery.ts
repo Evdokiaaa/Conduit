@@ -20,7 +20,7 @@ export const axiosBaseQuery =
     unknown,
     unknown
   > =>
-  async ({ url, method, data, params }, { getState }) => {
+  async ({ url, method = "get", data, params }, { getState }) => {
     const state = getState() as RootState;
     const token = state[authSlice.name].user?.token;
     try {
