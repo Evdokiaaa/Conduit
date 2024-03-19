@@ -65,19 +65,19 @@ const SignUp = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <Input
-              className="register__form-input"
+              className="register__form-input form__input"
               placeholder="Username"
               type="text"
               {...register("username")}
             />
             <Input
-              className="register__form-input"
+              className="register__form-input form__input"
               placeholder="Email"
               type="email"
               {...register("email")}
             />
             <Input
-              className="register__form-input"
+              className="register__form-input form__input"
               placeholder="Password"
               type="password"
               {...register("password")}

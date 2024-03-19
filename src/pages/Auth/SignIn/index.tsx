@@ -63,13 +63,13 @@ const SignIn = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <Input
-              className="login__form-input"
+              className="login__form-input form__input"
               placeholder="Email"
               type="email"
               {...register("email")}
             />
             <Input
-              className="login__form-input"
+              className="login__form-input form__input"
               placeholder="Password"
               type="password"
               {...register("password")}
