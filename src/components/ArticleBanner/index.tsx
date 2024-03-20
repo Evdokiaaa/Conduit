@@ -3,12 +3,19 @@ import { Author } from "../../types/SingleArticle";
 import ArticleUserInfo from "../Article/UserInfo";
 import Container from "../Container";
 import "./style.scss";
+
 interface ArticleBannerProps {
   title: string;
   author: Author;
   createdAt: string;
+  slug: string;
 }
-const ArticleBanner = ({ title, author, createdAt }: ArticleBannerProps) => {
+const ArticleBanner = ({
+  title,
+  author,
+  createdAt,
+  slug,
+}: ArticleBannerProps) => {
   return (
     <div className="article__banner">
       <Container>
@@ -16,7 +23,9 @@ const ArticleBanner = ({ title, author, createdAt }: ArticleBannerProps) => {
         <ArticleUserInfo
           author={author}
           createdAt={dayjs(createdAt).locale("en").format("ddd MMM DD YYYY")}
+          slug={slug}
           className="article__name"
+          showControlBtns={true}
         />
       </Container>
     </div>

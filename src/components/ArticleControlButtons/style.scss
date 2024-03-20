@@ -1,0 +1,40 @@
+.control__btns {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+.control__btn {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  padding: 0.5em 1rem;
+  border-width: 1px;
+  font-weight: 600;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+.edit__btn {
+  background: none;
+  border: none;
+  outline: none;
+}
+.edit__article-btn {
+  border: 2px solid hsl(93, 100%, 50%);
+  background: none;
+  color: var(--white);
+  &:hover {
+    background: hsl(93, 100%, 50%);
+    color: var(--black);
+  }
+}
+.delete__article-btn {
+  border: 2px solid hsl(0 100% 50%);
+  background: none;
+  color: hsl(0 100% 50%);
+  &:hover {
+    background-color: hsl(0 100% 50%);
+    color: var(--black);
+  }
+}

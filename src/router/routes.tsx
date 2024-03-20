@@ -36,6 +36,10 @@ export const routes: routesProps[] = [
     element: <Editor />,
   },
   {
+    path: "/editor/:slug",
+    element: <Editor />,
+  },
+  {
     path: "/profile/:user",
     element: <ProfilePage />,
   },

@@ -5,10 +5,10 @@ import Input from "../../../components/UI/Input";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import AuthBtn from "../../../components/UI/AuthBtn";
 import { ValidationError } from "../../../types/ValidationErrors";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../hooks/useAuth";
+import FormBtn from "../../../components/UI/AuthBtn";
 
 interface SignUpInputs {
   username: string;
@@ -82,7 +82,7 @@ const SignUp = () => {
               type="password"
               {...register("password")}
             />
-            <AuthBtn />
+            <FormBtn />
           </form>
         </div>
       </Container>

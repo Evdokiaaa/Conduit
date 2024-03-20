@@ -4,6 +4,7 @@ import { PopularTags } from "../types/PopularTags";
 import { ARTICLES_PER_PAGE, BASE_QUERY } from "../helpers/consts";
 import { SingleArticleRoot } from "../types/SingleArticle";
 import { CreateArticleBIO } from "../types/CreateArticle";
+import { splitTags } from "../utils";
 
 interface BaseFeed {
   page: number;
@@ -82,7 +83,7 @@ export const feedApi = createApi({
             title,
             description,
             body,
-            tagList: tags.split(",").map((tag: string) => tag.trim()),
+            tagList: splitTags(tags),
           },
         };
         return {

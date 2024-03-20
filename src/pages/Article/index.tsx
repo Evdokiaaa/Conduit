@@ -5,6 +5,7 @@ import ArticleBanner from "../../components/ArticleBanner";
 import Container from "../../components/Container";
 import Loading from "../../components/Loading";
 import "./style.scss";
+//TODO Тут будут кнопки Edit & Delete
 const ArticlePage = () => {
   const { slug } = useParams();
   const { data, isLoading, error } = useGetSingleArticleQuery({
@@ -27,6 +28,7 @@ const ArticlePage = () => {
         author={data!.article!.author}
         title={data!.article!.title}
         createdAt={data!.article!.createdAt}
+        slug={data!.article!.slug}
       />
       <div className="article__desc">
         <Container>
@@ -36,12 +38,13 @@ const ArticlePage = () => {
           </div>
           <div className="article__comment">
             <Link className="article__comment-link" to="/login">
-              Sign in
-            </Link>{" "}
+              Sign in {""}
+            </Link>
             or {""}
             <Link className="article__comment-link" to="/register">
-              Sign Up
-            </Link>{" "}
+              Sign Up {""}
+            </Link>
+            {""}
             to add comments on this article.
           </div>
         </Container>

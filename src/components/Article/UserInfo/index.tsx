@@ -2,16 +2,25 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import { Author } from "../../../types/Feed";
 import "./style.scss";
+import ArticleControlBtns from "../../ArticleControlButtons";
+import { useAuth } from "../../../hooks/useAuth";
 interface ArticleUserInfoProps {
   author: Author;
   createdAt: string;
   className?: string;
+  showControlBtns?: boolean;
+  slug: string;
 }
 const ArticleUserInfo = ({
   author,
   createdAt,
   className = "",
+  showControlBtns = false,
+  slug,
 }: ArticleUserInfoProps) => {
+  const { isLoggedIn, user } = useAuth();
+  const isUserAuthor = user?.username === author.username;
+
   return (
     <div className="article__user-info">
       <Link to={`/profile/${author.username}`}>
@@ -28,6 +37,10 @@ const ArticleUserInfo = ({
           {dayjs(createdAt).locale("en").format("ddd MMM DD YYYY")}
         </span>
       </div>
+      {/*dont like it but w/e*/}
+      {isLoggedIn && showControlBtns && isUserAuthor && (
+        <ArticleControlBtns slug={slug} />
+      )}
     </div>
   );
 };

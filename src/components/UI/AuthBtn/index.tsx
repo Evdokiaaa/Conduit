@@ -1,10 +1,14 @@
-  import "./style.scss";
-const AuthBtn = () => {
+import "./style.scss";
+interface FormBtn {
+  text?: string;
+  additionalClass?: string;
+}
+const FormBtn = ({ text = "Sign in", additionalClass }: FormBtn) => {
   return (
-    <button className="auth__btn" type="submit">
-      Sign in
+    <button className={`form__btn ${additionalClass} `} type="submit">
+      {text}
     </button>
   );
 };
 
-export default AuthBtn;
+export default FormBtn;

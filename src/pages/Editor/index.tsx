@@ -5,10 +5,15 @@ import Container from "../../components/Container";
 import { EditorInputs } from "../../types/Editor";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useCreateArticleMutation } from "../../api/api";
-import { useNavigate } from "react-router-dom";
+import {
+  useCreateArticleMutation,
+  useGetSingleArticleQuery,
+} from "../../api/api";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-//TODO Передалай кнопку в UI и вставить сюда
+import FormBtn from "../../components/UI/AuthBtn";
+import { useEffect } from "react";
+import Loading from "../../components/Loading";
 //TODO Сделать обработку ошибок, вынести ошибки в отдельный компонент
 const schema = yup.object({
   title: yup.string().required().min(2),
@@ -19,7 +24,8 @@ const schema = yup.object({
 const Editor = () => {
   const [createPost] = useCreateArticleMutation();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<EditorInputs>({
+
+  const { register, handleSubmit, reset } = useForm<EditorInputs>({
     defaultValues: {
       title: "",
       description: "",
@@ -28,15 +34,43 @@ const Editor = () => {
     },
     resolver: yupResolver(schema) as Resolver<EditorInputs>,
   });
+  const { slug } = useParams();
+  const { data, isLoading } = useGetSingleArticleQuery(
+    {
+      slug: String(slug),
+    },
+    { skip: !slug }
+  );
+  useEffect(() => {
+    if (data && slug) {
+      reset({
+        title: data.article.title,
+        description: data.article.description,
+        body: data.article.body,
+        tags: data.article.tagList.join(", "),
+      });
+    } else {
+      reset({
+        title: "",
+        description: "",
+        body: "",
+        tags: "",
+      });
+    }
+  }, [data, reset, slug]);
 
   const onSubmit = async (values: EditorInputs) => {
     try {
       const data = await createPost(values).unwrap();
       navigate(`/article/${data.article.slug}`);
     } catch (e) {
-      toast.error("An error occured");
+      toast.error("An error occurred");
     }
   };
+  if (slug && isLoading) {
+    return <Loading text="Loading..."></Loading>;
+  }
+
   return (
     <div className="editor">
       <Container>
@@ -61,9 +95,7 @@ const Editor = () => {
             placeholder="Tags"
             {...register("tags")}
           />
-          <button className="editor__btn" type="submit">
-            Publish Article
-          </button>
+          <FormBtn text="Publish Article" additionalClass="form__btn-add" />
         </form>
       </Container>
     </div>

@@ -1,4 +1,4 @@
-.auth__btn {
+.form__btn {
   color: var(--white);
   background-color: var(--green-banner);
   border-color: var(--green-banner);
@@ -13,5 +13,9 @@
   &:hover {
     background-color: #449d44;
     border-color: #419641;
+  }
+  &-add {
+    align-self: flex-end;
+    margin-right: 2.5rem;
   }
 }
