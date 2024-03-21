@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {
   useCreateArticleMutation,
+  useEditArticleMutation,
   useGetSingleArticleQuery,
 } from "../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,6 +15,8 @@ import { toast } from "react-toastify";
 import FormBtn from "../../components/UI/AuthBtn";
 import { useEffect } from "react";
 import Loading from "../../components/Loading";
+import { CreateArticleBIO } from "../../types/CreateArticle";
+import { EditArticleBIO } from "../../types/EditArticle";
 //TODO Сделать обработку ошибок, вынести ошибки в отдельный компонент
 const schema = yup.object({
   title: yup.string().required().min(2),
@@ -23,6 +26,7 @@ const schema = yup.object({
 });
 const Editor = () => {
   const [createPost] = useCreateArticleMutation();
+  const [editArticle] = useEditArticleMutation();
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset } = useForm<EditorInputs>({
@@ -35,7 +39,7 @@ const Editor = () => {
     resolver: yupResolver(schema) as Resolver<EditorInputs>,
   });
   const { slug } = useParams();
-  const { data, isLoading } = useGetSingleArticleQuery(
+  const { data, isLoading, refetch } = useGetSingleArticleQuery(
     {
       slug: String(slug),
     },
@@ -58,10 +62,18 @@ const Editor = () => {
       });
     }
   }, [data, reset, slug]);
-
+  //TODO ПОКА ТАК,ПОТОМ ПОФИКСИТЬ. ЧТО ТО С КЭШИРОВАНИЕМ
   const onSubmit = async (values: EditorInputs) => {
     try {
-      const data = await createPost(values).unwrap();
+      let data: CreateArticleBIO | EditArticleBIO;
+      const { body, title, description, tags } = values;
+      const updatedData = { body, title, description, tags };
+      slug
+        ? (data = await editArticle({ ...updatedData, slug }).unwrap())
+        : (data = await createPost(values).unwrap());
+
+      await refetch();
+
       navigate(`/article/${data.article.slug}`);
     } catch (e) {
       toast.error("An error occurred");

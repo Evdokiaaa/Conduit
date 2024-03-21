@@ -5,6 +5,8 @@ import { ARTICLES_PER_PAGE, BASE_QUERY } from "../helpers/consts";
 import { SingleArticleRoot } from "../types/SingleArticle";
 import { CreateArticleBIO } from "../types/CreateArticle";
 import { splitTags } from "../utils";
+import { EditArticle, EditArticleBIO } from "../types/EditArticle";
+import { DeleteArticle, DeleteArticleProps } from "../types/DeleteArticle";
 
 interface BaseFeed {
   page: number;
@@ -29,6 +31,9 @@ interface CreateArticleParams {
   description: string;
   body: string;
   tags: string;
+}
+interface EditArticleParams extends EditArticle {
+  slug: string;
 }
 
 export const feedApi = createApi({
@@ -93,6 +98,31 @@ export const feedApi = createApi({
         };
       },
     }),
+    editArticle: builder.mutation<EditArticleBIO, EditArticleParams>({
+      query: ({ title, description, body, tags, slug }) => {
+        const data = {
+          article: {
+            title,
+            description,
+            body,
+            tagList: splitTags(tags),
+          },
+        };
+        return {
+          url: `/articles/${slug}`,
+          method: "PUT",
+          data,
+        };
+      },
+    }),
+    deleteArticle: builder.mutation<DeleteArticle, DeleteArticleProps>({
+      query: ({ slug }) => {
+        return {
+          url: `/articles/${slug}`,
+          method: "DELETE",
+        };
+      },
+    }),
   }),
 });
 
@@ -102,4 +132,6 @@ export const {
   useGetPopularTagsQuery,
   useGetSingleArticleQuery,
   useCreateArticleMutation,
+  useEditArticleMutation,
+  useDeleteArticleMutation,
 } = feedApi;

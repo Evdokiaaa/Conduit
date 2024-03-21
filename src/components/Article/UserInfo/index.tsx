@@ -19,6 +19,7 @@ const ArticleUserInfo = ({
   slug,
 }: ArticleUserInfoProps) => {
   const { isLoggedIn, user } = useAuth();
+
   const isUserAuthor = user?.username === author.username;
 
   return (
