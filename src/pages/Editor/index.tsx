@@ -13,7 +13,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormBtn from "../../components/UI/AuthBtn";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import { CreateArticleBIO } from "../../types/CreateArticle";
 import { EditArticleBIO } from "../../types/EditArticle";
@@ -27,6 +27,8 @@ const schema = yup.object({
 const Editor = () => {
   const [createPost] = useCreateArticleMutation();
   const [editArticle] = useEditArticleMutation();
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset } = useForm<EditorInputs>({
@@ -39,7 +41,7 @@ const Editor = () => {
     resolver: yupResolver(schema) as Resolver<EditorInputs>,
   });
   const { slug } = useParams();
-  const { data, isLoading, refetch } = useGetSingleArticleQuery(
+  const { data, isLoading } = useGetSingleArticleQuery(
     {
       slug: String(slug),
     },
@@ -65,6 +67,7 @@ const Editor = () => {
   //TODO ПОКА ТАК,ПОТОМ ПОФИКСИТЬ. ЧТО ТО С КЭШИРОВАНИЕМ
   const onSubmit = async (values: EditorInputs) => {
     try {
+      setLoadingSubmit(true);
       let data: CreateArticleBIO | EditArticleBIO;
       const { body, title, description, tags } = values;
       const updatedData = { body, title, description, tags };
@@ -72,17 +75,17 @@ const Editor = () => {
         ? (data = await editArticle({ ...updatedData, slug }).unwrap())
         : (data = await createPost(values).unwrap());
 
-      await refetch();
-
       navigate(`/article/${data.article.slug}`);
     } catch (e) {
       toast.error("An error occurred");
+    } finally {
+      setLoadingSubmit(false);
     }
   };
   if (slug && isLoading) {
     return <Loading text="Loading..."></Loading>;
   }
-
+  console.log("Page is loading...");
   return (
     <div className="editor">
       <Container>
@@ -107,7 +110,11 @@ const Editor = () => {
             placeholder="Tags"
             {...register("tags")}
           />
-          <FormBtn text="Publish Article" additionalClass="form__btn-add" />
+          <FormBtn
+            text="Publish Article"
+            additionalClass="form__btn-add"
+            isLoading={loadingSubmit}
+          />
         </form>
       </Container>
     </div>

@@ -10,10 +10,15 @@
   line-height: 1.25;
   float: right;
   cursor: pointer;
-  &:hover {
+  &-loading {
+    background: #ff3e04;
+    cursor: not-allowed;
+  }
+  &:not(.form__btn-loading):hover {
     background-color: #449d44;
     border-color: #419641;
   }
+
   &-add {
     align-self: flex-end;
     margin-right: 2.5rem;

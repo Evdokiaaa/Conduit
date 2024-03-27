@@ -1,11 +1,23 @@
 import "./style.scss";
-interface FormBtn {
+interface FormBtnProps {
   text?: string;
+  isLoading?: boolean;
   additionalClass?: string;
 }
-const FormBtn = ({ text = "Sign in", additionalClass }: FormBtn) => {
+const FormBtn = ({
+  text = "Sign in",
+  additionalClass,
+  isLoading,
+}: FormBtnProps) => {
+  console.log(isLoading);
   return (
-    <button className={`form__btn ${additionalClass} `} type="submit">
+    <button
+      className={`form__btn ${additionalClass} ${
+        isLoading ? "form__btn-loading" : ""
+      } `}
+      disabled={isLoading}
+      type="submit"
+    >
       {text}
     </button>
   );
