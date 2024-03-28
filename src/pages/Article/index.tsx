@@ -5,8 +5,11 @@ import ArticleBanner from "../../components/ArticleBanner";
 import Container from "../../components/Container";
 import Loading from "../../components/Loading";
 import "./style.scss";
+import { useAuth } from "../../hooks/useAuth";
+import CommentList from "../../components/Comment/CommentList";
 //TODO Тут будут кнопки Edit & Delete
 const ArticlePage = () => {
+  const { isLoggedIn } = useAuth();
   const { slug } = useParams();
   const { data, isLoading, error } = useGetSingleArticleQuery({
     slug: slug!,
@@ -36,17 +39,21 @@ const ArticlePage = () => {
             <p className="article__desc-text">{data!.article!.body}</p>
             <ArticleTags tags={data?.article.tagList || []} />
           </div>
-          <div className="article__comment">
-            <Link className="article__comment-link" to="/login">
-              Sign in {""}
-            </Link>
-            or {""}
-            <Link className="article__comment-link" to="/register">
-              Sign Up {""}
-            </Link>
-            {""}
-            to add comments on this article.
-          </div>
+          {isLoggedIn ? (
+            <CommentList />
+          ) : (
+            <div className="article__comment">
+              <Link className="article__comment-link" to="/login">
+                Sign in {""}
+              </Link>
+              or {""}
+              <Link className="article__comment-link" to="/register">
+                Sign Up {""}
+              </Link>
+              {""}
+              to add comments on this article.
+            </div>
+          )}
         </Container>
       </div>
     </div>

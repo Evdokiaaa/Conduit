@@ -7,6 +7,7 @@ import { CreateArticleBIO } from "../types/CreateArticle";
 import { splitTags } from "../utils";
 import { EditArticle, EditArticleBIO } from "../types/EditArticle";
 import { DeleteArticle, DeleteArticleProps } from "../types/DeleteArticle";
+import { CommentData } from "../types/Comment";
 
 interface BaseFeed {
   page: number;
@@ -81,6 +82,16 @@ export const feedApi = createApi({
         method: "get",
       }),
     }),
+    getCommentsForArticle: builder.query<CommentData, SingleArticleParams>({
+      keepUnusedDataFor: 1,
+      query: ({ slug }) => ({
+        url: `/articles/${slug}/comments`,
+        method: "GET",
+      }),
+    }),
+    //======================
+    //----MUTATION----
+    //======================
     createArticle: builder.mutation<CreateArticleBIO, CreateArticleParams>({
       query: ({ title, description, body, tags }) => {
         const data = {
@@ -131,6 +142,7 @@ export const {
   useGetProfileFeedsQuery,
   useGetPopularTagsQuery,
   useGetSingleArticleQuery,
+  useGetCommentsForArticleQuery,
   useCreateArticleMutation,
   useEditArticleMutation,
   useDeleteArticleMutation,

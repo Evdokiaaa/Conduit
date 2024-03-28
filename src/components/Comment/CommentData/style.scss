@@ -1,0 +1,19 @@
+.comment__data {
+  &-text {
+    padding: 1.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 3px;
+  }
+  &-author {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: hsl(210 40% 96.1%);
+  }
+  &-delete {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+}
