@@ -1,0 +1,34 @@
+.add__comment {
+  margin-bottom: 2rem;
+  &-text {
+    width: 100%;
+    height: 122px;
+    padding: 1.25rem;
+    resize: none;
+    font-size: 0.875rem;
+    border-radius: 5px;
+    background: hsl(0 0% 100%);
+    outline: none;
+  }
+  &-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &-btn {
+    background: hsl(120 39% 54%);
+    color: var(--white);
+    padding: 0.5rem;
+    border: none;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.1s linear;
+    &:hover {
+      background: hsl(120, 34%, 51%);
+    }
+  }
+}

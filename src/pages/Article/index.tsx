@@ -6,8 +6,7 @@ import Container from "../../components/Container";
 import Loading from "../../components/Loading";
 import "./style.scss";
 import { useAuth } from "../../hooks/useAuth";
-import CommentList from "../../components/Comment/CommentList";
-//TODO Тут будут кнопки Edit & Delete
+import CommentSection from "../../components/Comment";
 const ArticlePage = () => {
   const { isLoggedIn } = useAuth();
   const { slug } = useParams();
@@ -40,7 +39,7 @@ const ArticlePage = () => {
             <ArticleTags tags={data?.article.tagList || []} />
           </div>
           {isLoggedIn ? (
-            <CommentList />
+            <CommentSection />
           ) : (
             <div className="article__comment">
               <Link className="article__comment-link" to="/login">
