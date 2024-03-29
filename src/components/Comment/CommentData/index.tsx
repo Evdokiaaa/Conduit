@@ -25,10 +25,11 @@ const CommentData = ({ body, author }: CommentDataProps) => {
               alt={author.username}
             />
           </span>
-          <button className="comment__data-delete">
-            <MdDelete fontSize={"2rem"} />
-          </button>
-          {isAuthor && <button>DELETE</button>}
+          {isAuthor && (
+            <button className="comment__data-delete">
+              <MdDelete fontSize={"2rem"} />
+            </button>
+          )}
         </div>
       </div>
     </div>

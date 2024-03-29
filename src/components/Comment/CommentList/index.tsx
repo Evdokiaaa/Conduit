@@ -8,8 +8,6 @@ const CommentList = () => {
   console.log(slug);
   const { data, isLoading } = useGetCommentsForArticleQuery({ slug: slug! });
   console.log("comments", data);
-  if (data?.comments.length === 0)
-    return <p className="comments__empty">No comments</p>;
   if (isLoading) {
     return (
       <Loading
@@ -18,10 +16,7 @@ const CommentList = () => {
       ></Loading>
     );
   }
-  // if (data?.comments) {
-  //   return <div>There are not comments</div>;
-  // }
-  console.log(data);
+
   return (
     <section className="users__comments">
       <div className="users__comments-container">

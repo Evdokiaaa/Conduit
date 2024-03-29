@@ -8,6 +8,7 @@ import { splitTags } from "../utils";
 import { EditArticle, EditArticleBIO } from "../types/EditArticle";
 import { DeleteArticle, DeleteArticleProps } from "../types/DeleteArticle";
 import { CommentData } from "../types/Comment";
+import { CreateComment } from "../types/CreateComment";
 
 interface BaseFeed {
   page: number;
@@ -35,6 +36,10 @@ interface CreateArticleParams {
 }
 interface EditArticleParams extends EditArticle {
   slug: string;
+}
+interface CreateCommentQuery {
+  slug: string;
+  comment: string;
 }
 
 export const feedApi = createApi({
@@ -109,6 +114,20 @@ export const feedApi = createApi({
         };
       },
     }),
+    createComment: builder.mutation<CreateComment, CreateCommentQuery>({
+      query: ({ slug, comment }) => {
+        const commentData = {
+          comment: {
+            body: comment,
+          },
+        };
+        return {
+          url: `/articles/${slug}/comments`,
+          method: "POST",
+          data: commentData,
+        };
+      },
+    }),
     editArticle: builder.mutation<EditArticleBIO, EditArticleParams>({
       query: ({ title, description, body, tags, slug }) => {
         const data = {
@@ -143,6 +162,7 @@ export const {
   useGetPopularTagsQuery,
   useGetSingleArticleQuery,
   useGetCommentsForArticleQuery,
+  useCreateCommentMutation,
   useCreateArticleMutation,
   useEditArticleMutation,
   useDeleteArticleMutation,

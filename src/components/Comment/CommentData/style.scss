@@ -10,6 +10,11 @@
     justify-content: space-between;
     padding: 0.75rem;
     background: hsl(210 40% 96.1%);
+    &-img {
+      border-radius: 100%;
+      width: 32px;
+      height: 32px;
+    }
   }
   &-delete {
     border: none;

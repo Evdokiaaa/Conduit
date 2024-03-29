@@ -6,7 +6,6 @@ import { RegisterUser } from "../types/Register";
 
 export const useAuth = () => {
   const user = useAppSelector(selectedUser);
-  console.log("USER", user);
   const isLoggedIn = Boolean(user);
   const [triggerLogin] = useLazyLoginQuery();
   const dispatch = useAppDispatch();
@@ -18,6 +17,7 @@ export const useAuth = () => {
     dispatch(setUser(data.user));
   };
   const [triggerRegister] = useLazyRegisterQuery();
+
   const registerUser = async (values: RegisterUser["user"]) => {
     const { data } = await triggerRegister(values, false);
     if (!data) {

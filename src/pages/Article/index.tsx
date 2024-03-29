@@ -39,7 +39,7 @@ const ArticlePage = () => {
             <ArticleTags tags={data?.article.tagList || []} />
           </div>
           {isLoggedIn ? (
-            <CommentSection />
+            <CommentSection slug={slug} />
           ) : (
             <div className="article__comment">
               <Link className="article__comment-link" to="/login">

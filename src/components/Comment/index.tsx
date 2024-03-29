@@ -3,11 +3,14 @@ import AddComment from "./AddComment";
 import CommentList from "./CommentList";
 import "./style.scss";
 //!Тут буду все, что связанное с комментариями
-const CommentSection = () => {
+interface CommentSectionProps {
+  slug: string;
+}
+const CommentSection = ({ slug }: CommentSectionProps) => {
   return (
     <section className="comments">
       <div className="comments__container">
-        <AddComment />
+        <AddComment slug={slug} />
         <CommentList />
       </div>
     </section>
