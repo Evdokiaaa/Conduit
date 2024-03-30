@@ -36,5 +36,12 @@
     &:hover {
       background: hsl(120, 34%, 51%);
     }
+    &-disabled {
+      cursor: not-allowed;
+      background: red;
+      &:hover {
+        background: red;
+      }
+    }
   }
 }

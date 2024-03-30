@@ -23,6 +23,7 @@ const CommentList = () => {
         {data?.comments.map((comment) => (
           <Comment
             key={`comment-${comment.id}`}
+            slug={slug!}
             author={comment.author}
             body={comment.body}
             id={comment.id}

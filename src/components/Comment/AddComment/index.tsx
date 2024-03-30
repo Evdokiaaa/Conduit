@@ -55,7 +55,9 @@ const AddComment = ({ slug }: AddCommentProps) => {
           />
         </span>
         <button
-          className="add__comment-btn"
+          className={`add__comment-btn ${
+            isSubmitting ? "add__comment-btn-disabled" : ""
+          }`}
           type="submit"
           disabled={isSubmitting}
         >

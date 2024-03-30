@@ -41,7 +41,10 @@ interface CreateCommentQuery {
   slug: string;
   comment: string;
 }
-
+interface DeleteCommentQuery {
+  articleSlug: string;
+  commentId: number;
+}
 export const feedApi = createApi({
   reducerPath: "feedApi",
   baseQuery: BASE_QUERY,
@@ -114,6 +117,7 @@ export const feedApi = createApi({
         };
       },
     }),
+
     createComment: builder.mutation<CreateComment, CreateCommentQuery>({
       query: ({ slug, comment }) => {
         const commentData = {
@@ -127,6 +131,12 @@ export const feedApi = createApi({
           data: commentData,
         };
       },
+    }),
+    deleteComment: builder.mutation<unknown, DeleteCommentQuery>({
+      query: ({ articleSlug, commentId }) => ({
+        url: `/articles/${articleSlug}/comments/${commentId}`,
+        method: "DELETE",
+      }),
     }),
     editArticle: builder.mutation<EditArticleBIO, EditArticleParams>({
       query: ({ title, description, body, tags, slug }) => {
@@ -164,6 +174,7 @@ export const {
   useGetCommentsForArticleQuery,
   useCreateCommentMutation,
   useCreateArticleMutation,
+  useDeleteCommentMutation,
   useEditArticleMutation,
   useDeleteArticleMutation,
 } = feedApi;

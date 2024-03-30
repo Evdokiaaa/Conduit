@@ -3,13 +3,25 @@ import { Author } from "../../../types/Feed";
 import { MdDelete } from "react-icons/md";
 
 import "./style.scss";
+import { useDeleteCommentMutation } from "../../../api/api";
+import { toast } from "react-toastify";
 interface CommentDataProps {
+  id: number;
   body: string;
   author: Author;
+  slug: string;
 }
-const CommentData = ({ body, author }: CommentDataProps) => {
+const CommentData = ({ id, body, author, slug }: CommentDataProps) => {
   const { user } = useAuth();
+  const [triggerDeleteComment, { isLoading }] = useDeleteCommentMutation();
   const isAuthor = user?.username === author.username; //Является ли юзер автором коммента
+  const deleteComment = async () => {
+    try {
+      await triggerDeleteComment({ commentId: id, articleSlug: slug });
+    } catch (e) {
+      toast.error("Something wen't wrong. Please, try again later");
+    }
+  };
   //!id - для удаления коммента
   return (
     <div className="comment__data">
@@ -26,7 +38,11 @@ const CommentData = ({ body, author }: CommentDataProps) => {
             />
           </span>
           {isAuthor && (
-            <button className="comment__data-delete">
+            <button
+              className="comment__data-delete"
+              disabled={isLoading}
+              onClick={deleteComment}
+            >
               <MdDelete fontSize={"2rem"} />
             </button>
           )}
