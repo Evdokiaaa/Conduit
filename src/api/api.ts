@@ -48,7 +48,7 @@ interface DeleteCommentQuery {
 export const feedApi = createApi({
   reducerPath: "feedApi",
   baseQuery: BASE_QUERY,
-  tagTypes: ["Comments", "Post", "EditArticle"],
+  tagTypes: ["Comments", "Post", "EditArticle", "Comment"],
   endpoints: (builder) => ({
     getArticles: builder.query<feedData, feedApiParams>({
       query: ({ page, tag, isPersonalFeed }) => ({
@@ -99,7 +99,7 @@ export const feedApi = createApi({
         url: `/articles/${slug}/comments`,
         method: "GET",
       }),
-      providesTags: ["Comments"],
+      providesTags: ["Comments", "Comment"],
     }),
     //======================
     //----MUTATION----
@@ -142,6 +142,7 @@ export const feedApi = createApi({
         url: `/articles/${articleSlug}/comments/${commentId}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Comment"],
     }),
     editArticle: builder.mutation<EditArticleBIO, EditArticleParams>({
       query: ({ title, description, body, tags, slug }) => {
