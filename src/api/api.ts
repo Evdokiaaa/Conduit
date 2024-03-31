@@ -48,7 +48,7 @@ interface DeleteCommentQuery {
 export const feedApi = createApi({
   reducerPath: "feedApi",
   baseQuery: BASE_QUERY,
-  tagTypes: ["Comments"],
+  tagTypes: ["Comments", "Post", "EditArticle"],
   endpoints: (builder) => ({
     getArticles: builder.query<feedData, feedApiParams>({
       query: ({ page, tag, isPersonalFeed }) => ({
@@ -66,6 +66,7 @@ export const feedApi = createApi({
           articlesCount: response.articlesCount || 0,
         };
       },
+      providesTags: ["Post"],
     }),
     getProfileFeeds: builder.query<feedData, ProfileFeed>({
       query: ({ page, author, isFavorite = false }) => ({
@@ -90,6 +91,7 @@ export const feedApi = createApi({
         url: `/articles/${slug}`,
         method: "get",
       }),
+      providesTags: ["EditArticle"],
     }),
     getCommentsForArticle: builder.query<CommentData, SingleArticleParams>({
       keepUnusedDataFor: 1,
@@ -157,6 +159,7 @@ export const feedApi = createApi({
           data,
         };
       },
+      invalidatesTags: ["EditArticle"],
     }),
     deleteArticle: builder.mutation<DeleteArticle, DeleteArticleProps>({
       query: ({ slug }) => {
@@ -165,6 +168,7 @@ export const feedApi = createApi({
           method: "DELETE",
         };
       },
+      invalidatesTags: ["Post"],
     }),
   }),
 });
