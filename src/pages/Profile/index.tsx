@@ -13,7 +13,7 @@ const ProfilePage = () => {
     data: profile,
     isLoading: profileLoading,
     error: profileError,
-  } = useGetProfileByNameQuery(user!);
+  } = useGetProfileByNameQuery({ username: user! });
 
   const { data, isLoading, isFetching, error } = useGetProfileFeedsQuery({
     author: user!,

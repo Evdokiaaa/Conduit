@@ -5,9 +5,10 @@ import { useAuth } from "../../hooks/useAuth";
 import { FaEdit } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { FaRegFaceSmileBeam } from "react-icons/fa6";
-
+//TODO внизу
 const Header = () => {
   const { isLoggedIn, user } = useAuth();
+  console.log("user in header", user?.username);
   return (
     <header className="header">
       <Container>
@@ -53,7 +54,7 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li className="nav__item">
-                  <FaRegFaceSmileBeam />
+                  <FaRegFaceSmileBeam /> {/*CHANGE IN FUTURE*/}
                   <NavLink
                     className={({ isActive }) =>
                       isActive ? "nav__item-link active" : "nav__item-link"
