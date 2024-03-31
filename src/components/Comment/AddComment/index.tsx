@@ -19,6 +19,7 @@ const AddComment = ({ slug }: AddCommentProps) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = useForm<AddCommentValues>({
     defaultValues: {
@@ -34,6 +35,7 @@ const AddComment = ({ slug }: AddCommentProps) => {
         slug: slug!,
         comment: values.body,
       }).unwrap();
+      reset();
     } catch (e) {
       toast.error("Something wen't wrong. Please, try again later");
     }

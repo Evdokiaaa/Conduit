@@ -16,11 +16,13 @@ interface UpdateProfileQuery {
 export const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery: BASE_QUERY,
+  tagTypes: ["Profile"],
   endpoints: (builder) => ({
     getProfileByName: builder.query<GlobalProfile, ProfileParams>({
       query: ({ username }) => ({
         url: `/profiles/${username}`,
       }),
+      providesTags: ["Profile"],
       /*==================
         ---MUTATION---
         ==================*/
@@ -42,6 +44,7 @@ export const profileApi = createApi({
           data: userData,
         };
       },
+      invalidatesTags: ["Profile"],
     }),
   }),
 });

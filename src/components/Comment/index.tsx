@@ -6,6 +6,7 @@ import "./style.scss";
 interface CommentSectionProps {
   slug: string;
 }
+
 const CommentSection = ({ slug }: CommentSectionProps) => {
   return (
     <section className="comments">
