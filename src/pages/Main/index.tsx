@@ -1,19 +1,18 @@
 import { useMatch, useSearchParams } from "react-router-dom";
 import { useGetArticlesQuery } from "../../api/api";
+import { usePageParams } from "../../hooks/usePageParams";
 import Banner from "../../components/Banner";
 import Feed from "../../components/Feed";
-import { usePageParams } from "../../hooks/usePageParams";
 import Tags from "../../components/Tags";
 import Container from "../../components/Container";
 import ActiveFeeds from "../../components/ActiveFeeds";
-import "./style.scss";
 import { useAuth } from "../../hooks/useAuth";
+import "./style.scss";
 const MainPage = () => {
   const [searchParams] = useSearchParams();
   const { page } = usePageParams();
-  const personalFeed = useMatch("/personal-feed");
-  console.log(personalFeed);
   const { isLoggedIn } = useAuth();
+  const personalFeed = useMatch("/personal-feed");
   const { data, error, isLoading, isFetching } = useGetArticlesQuery({
     page: page,
     tag: searchParams.get("tag"),

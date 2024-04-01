@@ -1,6 +1,7 @@
 import { ArticleFeeds } from "../../types/Feed";
 import Article from "../Article";
-import Loading from "../Loading";
+
+import Skeleton from "../UI/Skeleton";
 
 interface ArticleListProps {
   list: ArticleFeeds[];
@@ -16,7 +17,9 @@ const ArticleList = ({ list, isLoading }: ArticleListProps) => {
           ))}
         </section>
       ) : (
-        <Loading className="loading__articles" text="Loading..." />
+        Array(10)
+          .fill("")
+          .map(() => <Skeleton className="loading__articles" />)
       )}
     </>
   );
