@@ -20,7 +20,7 @@ const Pagination = ({ amount, changePage, page }: Pagination) => {
         activeLinkClassName="pagination__item-link-active"
         pageLinkClassName="pagination__item-link"
         onPageChange={changePage}
-        forcePage={page}
+        forcePage={page - 1}
       />
     </>
   );

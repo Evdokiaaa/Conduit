@@ -5,7 +5,7 @@ import { useDeleteArticleMutation } from "../../api/api";
 interface ArticleControlBtnsProps {
   slug: string;
 }
-//!Кнопки будут для удаление и изменение статьи
+
 const ArticleControlBtns = ({ slug }: ArticleControlBtnsProps) => {
   const navigate = useNavigate();
   const [deleteArticle] = useDeleteArticleMutation();
@@ -13,7 +13,6 @@ const ArticleControlBtns = ({ slug }: ArticleControlBtnsProps) => {
   const navigateToEdit = (slug: string) => {
     navigate(`/editor/${slug}`);
   };
-  //TODO Проблемы с КЭШ
   const navigateAfterDelete = async () => {
     await deleteArticle({ slug });
     navigate("/");
