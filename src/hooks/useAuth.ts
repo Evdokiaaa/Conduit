@@ -9,7 +9,7 @@ export const useAuth = () => {
 
   const user = useAppSelector(selectedUser);
   const isLoggedIn = Boolean(user);
-  
+
   const [triggerLogin] = useLazyLoginQuery();
   const loginUser = async (values: LoginUser["user"]) => {
     const { data } = await triggerLogin(values, false);
@@ -27,6 +27,7 @@ export const useAuth = () => {
     }
     dispatch(setUser(data.user));
   };
+
   const logOut = () => {
     dispatch(setUser(null));
   };

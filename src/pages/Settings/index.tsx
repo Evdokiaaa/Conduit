@@ -9,6 +9,8 @@ import FormBtn from "../../components/UI/AuthBtn";
 import { useNavigate } from "react-router-dom";
 import { useUpdateProfileMutation } from "../../api/ProfileApi";
 import { toast } from "react-toastify";
+import { setUser } from "../../store/authSlice";
+import { useAppDispatch } from "../../store/store";
 interface SettingsFormValues {
   avatar: string;
   username: string;
@@ -26,6 +28,8 @@ const settingsScheme = yup.object({
 });
 const Settings = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const { user, logOut } = useAuth();
   const [triggerUpdateProfile] = useUpdateProfileMutation();
   console.log(user);
@@ -41,7 +45,8 @@ const Settings = () => {
   });
   const updateProfile = async (values: SettingsFormValues) => {
     try {
-      await triggerUpdateProfile(values).unwrap();
+      const data = await triggerUpdateProfile(values).unwrap();
+      dispatch(setUser(data.user));
       navigate(`/profile/${values.username}`);
     } catch (e) {
       toast.error("An error occurred, please try again");

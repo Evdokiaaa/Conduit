@@ -12,8 +12,8 @@ interface User {
 }
 interface UserBIO {
   email: string;
-  token: string;
   username: string;
   bio: string;
   image: string;
+  token?: string;
 }
