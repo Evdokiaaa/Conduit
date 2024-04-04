@@ -31,7 +31,7 @@ const Header = () => {
             {isLoggedIn ? (
               <>
                 <li className="nav__item">
-                  <FaEdit />
+                  <FaEdit className="nav__item-icon" />
                   <NavLink
                     className={({ isActive }) =>
                       isActive ? "nav__item-link active" : "nav__item-link"
@@ -42,7 +42,7 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li className="nav__item">
-                  <IoMdSettings />
+                  <IoMdSettings className="nav__item-icon" />
                   <NavLink
                     className={({ isActive }) =>
                       isActive ? "nav__item-link active" : "nav__item-link"

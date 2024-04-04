@@ -19,7 +19,7 @@ const ArticleList = ({ list, isLoading }: ArticleListProps) => {
       ) : (
         Array(10)
           .fill("")
-          .map(() => <Skeleton className="loading__articles" />)
+          .map((_, i) => <Skeleton key={i} className="loading__articles" />)
       )}
     </>
   );
