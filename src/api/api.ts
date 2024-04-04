@@ -9,6 +9,7 @@ import { EditArticle, EditArticleBIO } from "../types/EditArticle";
 import { DeleteArticle, DeleteArticleProps } from "../types/DeleteArticle";
 import { CommentData } from "../types/Comment";
 import { CreateComment } from "../types/CreateComment";
+import { FavoriteArticle } from "../types/FavoriteArticle";
 
 interface BaseFeed {
   page: number;
@@ -45,10 +46,13 @@ interface DeleteCommentQuery {
   articleSlug: string;
   commentId: number;
 }
+interface FavoriteArticleParams {
+  slug: string;
+}
 export const feedApi = createApi({
   reducerPath: "feedApi",
   baseQuery: BASE_QUERY,
-  tagTypes: ["Comments", "Post", "EditArticle", "Comment"],
+  tagTypes: ["Comments", "Post", "EditArticle", "Comment", "Like"],
   endpoints: (builder) => ({
     getArticles: builder.query<feedData, feedApiParams>({
       query: ({ page, tag, isPersonalFeed }) => ({
@@ -171,6 +175,20 @@ export const feedApi = createApi({
       },
       invalidatesTags: ["Post"],
     }),
+    favoriteArticle: builder.mutation<FavoriteArticle, FavoriteArticleParams>({
+      query: ({ slug }) => ({
+        url: `/articles/${slug}/favorite`,
+        method: "POST",
+      }),
+    }),
+    unfavoriteArticle: builder.mutation<FavoriteArticle, FavoriteArticleParams>(
+      {
+        query: ({ slug }) => ({
+          url: `/articles/${slug}/favorite`,
+          method: "DELETE",
+        }),
+      }
+    ),
   }),
 });
 
@@ -185,4 +203,6 @@ export const {
   useDeleteCommentMutation,
   useEditArticleMutation,
   useDeleteArticleMutation,
+  useFavoriteArticleMutation,
+  useUnfavoriteArticleMutation,
 } = feedApi;

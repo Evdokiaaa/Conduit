@@ -14,14 +14,19 @@ const Article = ({
   favoritesCount,
   tagList,
   slug,
+  favorited,
 }: ArticleProps) => {
   return (
     <article className="article__preview">
       <div className="article__header">
-        <ArticleUserInfo author={author} createdAt={createdAt} />
+        <ArticleUserInfo author={author} createdAt={createdAt} slug={slug} />
       </div>
       <div className="article__right">
-        <LikeButton count={favoritesCount} />
+        <LikeButton
+          count={favoritesCount}
+          slug={slug}
+          isFavorited={favorited}
+        />
       </div>
       <div className="article__content">
         <Link to={`/article/${slug}`}>
