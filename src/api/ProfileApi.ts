@@ -3,7 +3,11 @@ import { BASE_QUERY } from "../helpers/consts";
 
 import { GlobalProfile } from "../types/Profile";
 import { UpdateProfile, UpdateProfileData } from "../types/UpdateProfile";
+import { FollowUser } from "../types/FollowUser";
 interface ProfileParams {
+  username: string;
+}
+interface FollowUserParams {
   username: string;
 }
 interface UpdateProfileQuery {
@@ -46,7 +50,23 @@ export const profileApi = createApi({
       },
       invalidatesTags: ["Profile"],
     }),
+    followUser: builder.mutation<FollowUser, FollowUserParams>({
+      query: ({ username }) => ({
+        url: `/profiles/${username}/follow`,
+        method: "POST",
+      }),
+    }),
+    unfollowUser: builder.mutation<FollowUser, FollowUserParams>({
+      query: ({ username }) => ({
+        url: `/profiles/${username}/follow`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
-export const { useGetProfileByNameQuery, useUpdateProfileMutation } =
-  profileApi;
+export const {
+  useGetProfileByNameQuery,
+  useUpdateProfileMutation,
+  useFollowUserMutation,
+  useUnfollowUserMutation,
+} = profileApi;

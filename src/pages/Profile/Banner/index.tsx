@@ -1,21 +1,15 @@
 import Container from "../../../components/Container";
-import { LuPlus } from "react-icons/lu";
 import { Profile } from "../../../types/Profile";
 import { useAuth } from "../../../hooks/useAuth";
-import { IoMdSettings } from "react-icons/io";
-import ProfileBtn from "../../../components/UI/ProfileBtn";
 import "./style.scss";
-import { useNavigate } from "react-router-dom";
+import FollowBtn from "../../../components/UI/ProfileBtn/Follow";
+import EditSettingsBtn from "../../../components/UI/ProfileBtn/EditSettings";
 interface ProfileBannerProps {
   profile: Profile;
 }
 
 const ProfileBanner = ({ profile }: ProfileBannerProps) => {
   const { user } = useAuth();
-  const navigate = useNavigate();
-  const settingsNavigate = () => {
-    navigate("/settings");
-  };
   return (
     <div className="profile__banner">
       <Container>
@@ -27,19 +21,12 @@ const ProfileBanner = ({ profile }: ProfileBannerProps) => {
           />
           <h4 className="profile__banner-title">{profile.username}</h4>
           {user?.username !== profile.username ? (
-            <ProfileBtn
-              text={"Follow"}
+            <FollowBtn
               username={profile.username}
-              className="follow"
-              Icon={<LuPlus className="profile__banner-icon" />}
+              isFollowed={profile.following}
             />
           ) : (
-            <ProfileBtn
-              onClick={settingsNavigate}
-              text={"Edit Profile Settings"}
-              className="settings"
-              Icon={<IoMdSettings className="profile__banner-icon" />}
-            />
+            <EditSettingsBtn />
           )}
         </div>
       </Container>
