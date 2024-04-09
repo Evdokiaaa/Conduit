@@ -20,13 +20,13 @@ interface UpdateProfileQuery {
 export const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery: BASE_QUERY,
-  tagTypes: ["Profile"],
+  tagTypes: ["Profile", "Follow"],
   endpoints: (builder) => ({
     getProfileByName: builder.query<GlobalProfile, ProfileParams>({
       query: ({ username }) => ({
         url: `/profiles/${username}`,
       }),
-      providesTags: ["Profile"],
+      providesTags: ["Profile", "Follow"],
       /*==================
         ---MUTATION---
         ==================*/
@@ -55,12 +55,14 @@ export const profileApi = createApi({
         url: `/profiles/${username}/follow`,
         method: "POST",
       }),
+      invalidatesTags: ["Follow"],
     }),
     unfollowUser: builder.mutation<FollowUser, FollowUserParams>({
       query: ({ username }) => ({
         url: `/profiles/${username}/follow`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Follow"],
     }),
   }),
 });

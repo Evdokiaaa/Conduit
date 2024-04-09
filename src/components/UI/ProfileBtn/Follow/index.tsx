@@ -7,6 +7,7 @@ import {
   useFollowUserMutation,
   useUnfollowUserMutation,
 } from "../../../../api/ProfileApi";
+
 interface FollowBtnProps {
   username: string;
   isFollowed: boolean;
@@ -14,9 +15,13 @@ interface FollowBtnProps {
 const FollowBtn = ({ username, isFollowed }: FollowBtnProps) => {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
-  const [triggerFollow] = useFollowUserMutation();
-  const [triggerUnfollow] = useUnfollowUserMutation();
-  console.log("USER IS FOLLOW OR NOT", isFollowed);
+
+  const [triggerFollow, { isLoading: isFollowLoading }] =
+    useFollowUserMutation();
+  const [triggerUnfollow, { isLoading: isUnfollowLoading }] =
+    useUnfollowUserMutation();
+
+  console.log("USER IS FOLLOW OR NOT", isFollowed, isFollowLoading);
   const toggleFollow = async () => {
     if (!isLoggedIn) {
       navigate("/login");
@@ -37,7 +42,13 @@ const FollowBtn = ({ username, isFollowed }: FollowBtnProps) => {
     }
   };
   return (
-    <button className={"follow__btn"} onClick={toggleFollow}>
+    <button
+      className={`follow__btn ${
+        isFollowLoading || isUnfollowLoading ? "follow__btn-disabled" : ""
+      }`}
+      onClick={toggleFollow}
+      disabled={isFollowLoading || isUnfollowLoading}
+    >
       <LuPlus className="follow__btn-icon" />
       {isFollowed ? "Unfollow" : "Follow"} {""}
       {username}

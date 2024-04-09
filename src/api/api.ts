@@ -52,7 +52,7 @@ interface FavoriteArticleParams {
 export const feedApi = createApi({
   reducerPath: "feedApi",
   baseQuery: BASE_QUERY,
-  tagTypes: ["Comments", "Post", "EditArticle", "Comment", "Like"],
+  tagTypes: ["Comments", "Post", "EditArticle", "Comment", "Like", "Follow"],
   endpoints: (builder) => ({
     getArticles: builder.query<feedData, feedApiParams>({
       query: ({ page, tag, isPersonalFeed }) => ({
@@ -70,7 +70,7 @@ export const feedApi = createApi({
           articlesCount: response.articlesCount || 0,
         };
       },
-      providesTags: ["Post"],
+      providesTags: ["Post", "Like"],
     }),
     getProfileFeeds: builder.query<feedData, ProfileFeed>({
       query: ({ page, author, isFavorite = false }) => ({
@@ -180,6 +180,7 @@ export const feedApi = createApi({
         url: `/articles/${slug}/favorite`,
         method: "POST",
       }),
+      invalidatesTags: ["Like"],
     }),
     unfavoriteArticle: builder.mutation<FavoriteArticle, FavoriteArticleParams>(
       {
@@ -187,6 +188,7 @@ export const feedApi = createApi({
           url: `/articles/${slug}/favorite`,
           method: "DELETE",
         }),
+        invalidatesTags: ["Like"],
       }
     ),
   }),
