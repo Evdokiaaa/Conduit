@@ -2,16 +2,37 @@ import { Link, NavLink } from "react-router-dom";
 import "./style.scss";
 import Container from "../Container";
 import { useAuth } from "../../hooks/useAuth";
-import { FaEdit } from "react-icons/fa";
+import { FaBars, FaEdit } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
-
+import { useEffect, useState } from "react";
+//TODO Сделать клик аутсайд для моб меню
 const Header = () => {
   const { isLoggedIn, user } = useAuth();
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 524) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   console.log("user in header", user?.username);
   return (
     <header className="header">
       <Container>
-        <nav className="nav">
+        <nav className={`nav ${isMobileMenuOpen ? "nav__open" : ""}`}>
+          <button className="nav__toggle" onClick={toggleMobileMenu}>
+            <FaBars />
+          </button>
           <div>
             <Link className="nav__logo" to="/">
               conduit

@@ -3,6 +3,9 @@
   align-items: center;
   gap: 1.5rem;
   padding: 0.7rem 0;
+  @media (max-width: 524px) {
+    flex-direction: column;
+  }
   &-link.active {
     background: var(--white);
     color: var(--green-banner);

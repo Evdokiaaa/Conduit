@@ -8,6 +8,13 @@
     &-loading {
       float: right;
     }
+    @media (max-width: 1200px) {
+      width: 100%;
+    }
+  }
+  @media (max-width: 1200px) {
+    max-width: 100%;
+    text-align: center;
   }
 }
 .tag__default {

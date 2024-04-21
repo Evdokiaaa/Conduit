@@ -6,13 +6,13 @@ const App = () => {
   return (
     <>
       <Header />
-      {/* <main className="main">
+      <main className="main">
         <Routes>
           {routes.map((route) => (
             <Route key={route.id} path={route.path} element={route.element} />
           ))}
         </Routes>
-      </main> */}
+      </main>
     </>
   );
 };
