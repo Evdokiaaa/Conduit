@@ -43,7 +43,7 @@ const Header = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  isActive ? "nav__item-link active" : "nav__item-link"
+                  isActive ? "nav__link nav__link-active" : "nav__link"
                 }
               >
                 Home
@@ -55,7 +55,7 @@ const Header = () => {
                   <FaEdit className="nav__item-icon" />
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav__item-link active" : "nav__item-link"
+                      isActive ? "nav__link nav__link-active" : "nav__link"
                     }
                     to="/editor"
                   >
@@ -66,7 +66,7 @@ const Header = () => {
                   <IoMdSettings className="nav__item-icon" />
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav__item-link active" : "nav__item-link"
+                      isActive ? "nav__link nav__link-active" : "nav__link"
                     }
                     to="/settings"
                   >
@@ -82,7 +82,7 @@ const Header = () => {
 
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav__item-link active" : "nav__item-link"
+                      isActive ? "nav__link nav__link-active" : "nav__link"
                     }
                     to={`/profile/${user?.username}`}
                   >
@@ -95,7 +95,7 @@ const Header = () => {
                 <li className="nav__item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav__item-link active" : "nav__item-link"
+                      isActive ? "nav__link nav__link-active" : "nav__link"
                     }
                     to="/login"
                   >
@@ -105,7 +105,7 @@ const Header = () => {
                 <li className="nav__item">
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? "nav__item-link active" : "nav__item-link"
+                      isActive ? "nav__link nav__link-active" : "nav__link"
                     }
                     to="/register"
                   >

@@ -15,7 +15,7 @@ const CommentList = () => {
     return (
       <Loading
         text="Loading the comments.."
-        className="loading__comments"
+        className="loading__text loading__text-comments"
       ></Loading>
     );
   }
@@ -23,7 +23,7 @@ const CommentList = () => {
     return (
       <Loading
         text="Loading the comments.."
-        className="loading__comments"
+        className="loading__text loading__text-comments"
       ></Loading>
     );
   }

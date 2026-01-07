@@ -18,7 +18,7 @@ const ArticlePage = () => {
       <Container>
         <Loading
           text="Loading Article..."
-          className="loading__single-article"
+          className="loading__text loading__text-article"
         />
       </Container>
     );

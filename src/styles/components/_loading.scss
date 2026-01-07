@@ -1,21 +1,25 @@
-.loader {
+.loading {
+
+  // Базовые стили, их добавляем в вместе с text-article / text-comments
+
+  &__text {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  &__text-article {
+    margin-top: 24px;
+  }
+
+  &__text-comments {
+    margin-top: 32px;
+  }
+
   &__tags {
     padding: 4px 10px 0 0;
   }
 
   &__favorites {
     margin-top: 8px;
-  }
-
-  &__article {
-    margin-top: 24px;
-    font-size: 32px;
-    text-align: center;
-  }
-
-  &__comments {
-    margin-top: 32px;
-    font-size: 32px;
-    text-align: center;
   }
 }
