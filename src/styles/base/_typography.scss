@@ -1,0 +1,34 @@
+
+/* Все что связано с текстом и шрифтом */
+
+html{
+  font-size: 16px;
+  line-height: 1.5;
+
+}
+
+body {
+  font-family: var(--ff-sans), sans-serif;
+  color:rgb( 55,58,60)
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 8px;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-green-base);
+}

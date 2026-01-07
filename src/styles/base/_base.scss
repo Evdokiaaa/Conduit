@@ -1,0 +1,30 @@
+:root {
+  /* Base colors */
+  --color-black: rgb(0, 0, 0);
+  --color-white: rgb(255, 255, 255);
+
+  /* Green colors */
+  --color-green-light: rgb(105, 190, 105);
+  --color-green-base: rgb(92, 184, 92); // was green banner
+  --color-green-dark: rgb(77, 133, 58);
+  --color-green-deep: rgb(52, 120, 52);
+  --color-green-hover: rgb(61, 139, 61);
+
+  /* Grey colors */
+  --color-grey-light: rgb(187, 187, 187);
+  --color-grey-base: rgb(232, 230, 227);
+  --color-grey-text: rgb(153, 153, 153);
+
+  /* Fonts */
+  --font-sans: "Source Sans 3", sans-serif;
+  --font-heading: "Titillium Web", sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  @media screen and (min-width: 1200px) {
+    max-width: 1140px;
+  }
+}
+

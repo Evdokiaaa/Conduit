@@ -21,13 +21,13 @@
         color: var(--green-link-hover);
       }
       &-active {
-        color: var(--white);
-        background-color: var(--green-banner);
-        border-color: var(--green-banner);
+        color: var(--color-white);
+        background-color: var(--color-green-base);
+        border-color: var(--color-green-base);
         cursor: default;
         text-decoration: underline;
         &:hover {
-          color: var(--white);
+          color: var(--color-white);
         }
       }
     }

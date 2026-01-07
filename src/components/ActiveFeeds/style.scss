@@ -7,23 +7,23 @@
     flex-direction: column;
   }
   &-link.active {
-    background: var(--white);
-    color: var(--green-banner);
-    border-bottom: 2px solid var(--green-banner);
+    background: var(--color-white);
+    color: var(--color-green-base);
+    border-bottom: 2px solid var(--color-green-base);
     padding: 0.7rem 0.6rem;
     font-size: 1.2rem;
     cursor: default;
     font-weight: 400;
 
     &:hover {
-      color: var(--green-banner);
+      color: var(--color-green-base);
     }
   }
   &-link {
     border-bottom: 2px solid transparent;
-    color: #aaa;
+    color: var(--color-grey-light);
     &:hover {
-      color: #555;
+      color: var(--color-grey-text);
     }
   }
 }

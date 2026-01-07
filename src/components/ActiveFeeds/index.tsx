@@ -1,5 +1,6 @@
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import "./style.scss";
+
 interface ActiveFeedsItem {
   name: string;
   link: string;
