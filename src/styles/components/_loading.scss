@@ -1,0 +1,21 @@
+.loader {
+  &__tags {
+    padding: 4px 10px 0 0;
+  }
+
+  &__favorites {
+    margin-top: 8px;
+  }
+
+  &__article {
+    margin-top: 24px;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  &__comments {
+    margin-top: 32px;
+    font-size: 32px;
+    text-align: center;
+  }
+}
