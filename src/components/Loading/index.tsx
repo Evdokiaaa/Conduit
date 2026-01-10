@@ -1,4 +1,3 @@
-import "./style.scss";
 interface LoadingProps {
   text: string;
   className?: string;

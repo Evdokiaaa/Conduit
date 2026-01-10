@@ -3,29 +3,37 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  row-gap: 1.5rem;
+  gap: 8px;
 
-  margin: 1rem 0;
+  margin: 16px 0;
+
   &__item {
-    border-color: #ddd;
+    flex: 0 0 auto;
+    border: 1px solid var(--color-white-light);
     cursor: pointer;
-    max-width: 25%;
+    transition: background-color 0.2s ease;
+
     &:hover {
       background-color: #eceeef;
     }
 
     &-link {
-      padding: 0.5rem 0.75rem;
-      border: 1px solid #ddd;
+      display: block;
+      padding: 8px 12px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
       &:hover {
-        color: var(--green-link-hover);
+        color: var(--color-green-dark);
       }
+
       &-active {
         color: var(--color-white);
         background-color: var(--color-green-base);
         border-color: var(--color-green-base);
         cursor: default;
         text-decoration: underline;
+
         &:hover {
           color: var(--color-white);
         }

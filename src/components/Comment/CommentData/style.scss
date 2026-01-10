@@ -1,19 +1,17 @@
 .comment__data {
   &-text {
-    padding: 1.25rem;
+    padding: 20px;
     border: 1px solid #e5e7eb;
     border-radius: 3px;
   }
   &-author {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem;
+    @include flex-between;
+    padding: 14px;
     background: hsl(210 40% 96.1%);
     &-img {
-      border-radius: 100%;
       width: 32px;
       height: 32px;
+      border-radius: 100%;
     }
   }
   &-delete {

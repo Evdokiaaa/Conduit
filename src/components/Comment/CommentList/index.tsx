@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGetCommentsForArticleQuery } from "../../../api/api";
 import Loading from "../../Loading";
 import Comment from "../Comment";
-import "./style.scss";
+
 //TODO Сделать сортировку
 const CommentList = () => {
   const { slug } = useParams();

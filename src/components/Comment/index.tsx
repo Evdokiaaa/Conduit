@@ -1,4 +1,4 @@
-import React from "react";
+
 import AddComment from "./AddComment";
 import CommentList from "./CommentList";
 import "./style.scss";

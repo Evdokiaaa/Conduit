@@ -9,7 +9,7 @@ const Tags = () => {
   return (
     <aside className="tags">
       <div className="tags__container">
-        <p className="popular__tags">Popular Tags</p>
+        <p className="tags__popular">Popular Tags</p>
         {isLoading ? (
           <Loading className="loading__tags" text="Loading popular tags..." />
         ) : (

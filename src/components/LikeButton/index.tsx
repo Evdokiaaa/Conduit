@@ -37,7 +37,7 @@ const LikeButton = ({ count, slug, isFavorited = false }: LikeButton) => {
     }
   };
   return (
-    <IconContext.Provider value={{ color: "#5cb85c", className: "like__ico" }}>
+    <IconContext.Provider value={{ color: "#5cb85c", className: "like__button-ico" }}>
       <button className="like__button" onClick={handleFavorite}>
         <FaHeart color={isFavorited ? "red" : ""} />
         {count}
