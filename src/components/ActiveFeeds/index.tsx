@@ -25,12 +25,12 @@ const ActiveFeeds = ({
       <ul className="feed__nav">
         <li className="feed__nav-item">
           <Link
-            className={`feed__nav-link ${
+            className={`${
               tag ||
               location.pathname.includes("personal-feed") ||
               location.pathname.includes("favorites")
-                ? ""
-                : "active"
+                ? "feed__nav-link"
+                : "feed__nav-link--active"
             }`}
             to={link}
           >
@@ -40,11 +40,11 @@ const ActiveFeeds = ({
         {additional?.map((item) => (
           <li className="feed__nav-item" key={item.link}>
             <Link
-              className={`feed__nav-link ${
+              className={`${
                 location.pathname.includes("favorites") ||
                 location.pathname.includes("personal-feed")
-                  ? "active"
-                  : ""
+                  ? "feed__nav-link"
+                  : "feed__nav-link--active"
               }`}
               to={item.link}
             >
@@ -54,7 +54,7 @@ const ActiveFeeds = ({
         ))}
         <li className="feed__nav-item">
           {tag && (
-            <span className="feed__nav-link active">
+            <span className="feed__nav-link--active">
               <b># </b>
               {tag}
             </span>

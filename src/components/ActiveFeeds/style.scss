@@ -1,29 +1,33 @@
 .feed__nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 0.7rem 0;
+  gap: 24px;
+  padding: 11px 0;
+
   @media (max-width: 524px) {
     flex-direction: column;
   }
-  &-link.active {
-    background: var(--color-white);
-    color: var(--color-green-base);
-    border-bottom: 2px solid var(--color-green-base);
-    padding: 0.7rem 0.6rem;
-    font-size: 1.2rem;
-    cursor: default;
-    font-weight: 400;
 
-    &:hover {
-      color: var(--color-green-base);
-    }
-  }
   &-link {
     border-bottom: 2px solid transparent;
     color: var(--color-grey-light);
+
     &:hover {
       color: var(--color-grey-text);
+    }
+  }
+
+  &-link--active {
+    background: var(--color-white);
+    color: var(--color-green-base);
+    border-bottom: 2px solid var(--color-green-base);
+    padding: 11px 10px;
+    font-size: 19px;
+    font-weight: 400;
+    cursor: default;
+
+    &:hover {
+      color: var(--color-green-base);
     }
   }
 }

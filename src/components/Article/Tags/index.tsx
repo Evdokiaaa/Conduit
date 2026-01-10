@@ -6,7 +6,7 @@ const ArticleTags = ({ tags }: ArticleTagsProps) => {
   return (
     <ul className="article__tags">
       {tags.map((tag, i) => (
-        <li key={i} className="article__tag">
+        <li key={i} className="article__tags-item">
           {tag}
         </li>
       ))}

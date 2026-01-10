@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import { Author } from "../../../types/Feed";
-import "./style.scss";
 import ArticleControlBtns from "../../ArticleControlButtons";
 import { useAuth } from "../../../hooks/useAuth";
+import "./style.scss";
 interface ArticleUserInfoProps {
   author: Author;
   createdAt: string;
@@ -25,7 +25,7 @@ const ArticleUserInfo = ({
   return (
     <div className="article__user-info">
       <Link to={`/profile/${author.username}`}>
-        <img className="author__img" src={author.image} alt={author.username} />
+        <img className="article__author-img" src={author.image} alt={author.username} />
       </Link>
       <div className="article__info">
         <Link

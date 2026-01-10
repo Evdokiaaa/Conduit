@@ -1,5 +1,4 @@
 import { Link, NavLink } from "react-router-dom";
-import "./style.scss";
 import Container from "../Container";
 import { useAuth } from "../../hooks/useAuth";
 import { FaBars, FaEdit } from "react-icons/fa";
