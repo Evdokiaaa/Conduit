@@ -24,7 +24,7 @@ const ArticleBanner = ({
           author={author}
           createdAt={dayjs(createdAt).locale("en").format("ddd MMM DD YYYY")}
           slug={slug}
-          className="article__name"
+          className="article__banner-name"
           showControlBtns={true}
         />
       </Container>

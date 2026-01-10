@@ -21,14 +21,14 @@ const ArticleControlBtns = ({ slug }: ArticleControlBtnsProps) => {
     <div className="control__btns">
       <button
         onClick={() => navigateToEdit(slug)}
-        className="edit__article-btn control__btn"
+        className="control__button control__button-edit"
       >
         <MdOutlineEdit />
         Edit Article
       </button>
 
       <button
-        className="delete__article-btn control__btn"
+        className="control__button control__button-delete"
         onClick={navigateAfterDelete}
       >
         <MdOutlineDelete />
