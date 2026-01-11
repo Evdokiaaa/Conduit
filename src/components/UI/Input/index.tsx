@@ -1,5 +1,5 @@
 import { ComponentProps, forwardRef } from "react";
-import "./style.scss";
+
 interface InputProps {
   className: string;
   placeholder: ComponentProps<"input">["placeholder"];

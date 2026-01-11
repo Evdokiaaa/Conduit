@@ -1,22 +1,22 @@
 .form__btn {
   color: var(--color-white);
   background-color: var(--color-green-base);
-  padding: 14px 24px;
   font-size: 20px;
-  border-radius: 5px;
-  border: 1px solid transparent;
   font-weight: 400;
   line-height: 1.25;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  padding: 14px 24px;
   float: right;
   cursor: pointer;
 
   &-loading {
-    background: #ff3e04;
+    background: var(--color-red-base);
     cursor: not-allowed;
   }
   &:not(.form__btn-loading):hover {
     background-color: #449d44;
-    border-color: #419641;
+    border-color: var(--color-green-dark);
   }
   &-add {
     align-self: flex-end;

@@ -1,4 +1,4 @@
-import "./style.scss";
+
 interface FormBtnProps {
   text?: string;
   isLoading?: boolean;
@@ -9,7 +9,7 @@ const FormBtn = ({
   additionalClass,
   isLoading,
 }: FormBtnProps) => {
-  console.log(isLoading);
+
   return (
     <button
       className={`form__btn ${additionalClass} ${

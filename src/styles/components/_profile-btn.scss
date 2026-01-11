@@ -1,0 +1,38 @@
+.edit-settings__btn {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  align-self: flex-end;
+  color: rgb(168, 160, 149);
+  border: 1px solid rgb(77, 83, 86);
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  background: inherit;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--color-grey-base);
+  }
+
+  &__icon {
+    margin-bottom: 1px;
+    margin-right: 3px;
+  }
+
+  @media (max-width: 524px) {
+    align-self: center;
+    margin: 10px 0;
+  }
+}
+
+.follow__btn {
+  @extend .edit-settings__btn;
+  &:hover {
+    background-color: var(--color-grey-base);
+  }
+  &-icon {
+    margin-bottom: 1px;
+    margin-right: 3px;
+  }
+}
+
